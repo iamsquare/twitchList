@@ -3,5 +3,6 @@ $container-color: #282828;
 $container-color-light: lighten($container-color, 5%);
 $container-color-shadow: darken($container-color, 5%);
 $status-color-online: #6441a4;
+$background-color-secondary: darken($status-color-online, 33%);
 $status-color-offline: $container-color-shadow;
 $text-color: #D3D3D3;

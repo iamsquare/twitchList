@@ -1,4 +1,4 @@
-@import 'variables', 'mixins', 'colors';
+@import 'variables', 'mixins', 'colors', 'angular';
 
 *{
 	box-sizing: border-box;
@@ -6,6 +6,9 @@
 
 body {
 	background: $background-color;
+	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%);
+	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%);
+	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 100%);
 	font-family: $font-main;
 	@include user-select(none);
 }
@@ -17,12 +20,21 @@ a {
 #main-container {
 	margin: 3% auto;
 	width: 40%;
+	.main-title {
+		color: $text-color;
+		font-size: 2em;
+		font-weight: 600;
+		text-align: center;
+		text-transform: uppercase;
+		margin: 0 0 20px 0;
+	}
 }
 
 .stream-container {
 	background: $container-color;
 	width: 100%;
 	padding: 20px;
+	margin: 0 0 2px 0;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -34,13 +46,15 @@ a {
 		align-self: center;
 		color: $text-color;
 		margin-left: 20px;
+		text-align: center;
 	}
 	.stream-name {
+		width: 30%;
 		font-style: italic;
 	}
 	.stream-title {
+		width: 70%;
 		font-weight: 600;
-		text-align: right;
 	}
 }
 
