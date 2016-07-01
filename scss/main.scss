@@ -1,0 +1,76 @@
+@import 'variables', 'mixins', 'colors';
+
+*{
+	box-sizing: border-box;
+}
+
+body {
+	background: $background-color;
+	font-family: $font-main;
+	@include user-select(none);
+}
+
+a {
+	text-decoration: none;
+}
+
+#main-container {
+	margin: 3% auto;
+	width: 40%;
+}
+
+.stream-container {
+	background: $container-color;
+	width: 100%;
+	padding: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	&:hover{
+		background: $container-color-light;
+	}
+	.stream-name, .stream-title {
+		align-self: center;
+		color: $text-color;
+		margin-left: 20px;
+	}
+	.stream-name {
+		font-style: italic;
+	}
+	.stream-title {
+		font-weight: 600;
+		text-align: right;
+	}
+}
+
+
+
+.stream-logo-container{
+	border: $container-color-shadow solid 2px;
+	.stream-logo{
+		@include box($logo-size, $logo-size);
+	}
+	.stream-status-container {
+		width: $logo-size;
+		padding: 7px 0;
+		position: relative;
+		display: none;
+		overflow: hidden;
+		color: $text-color;
+		font-size: 11px;
+		text-align: center;
+		text-transform: uppercase;
+		&.online, &.offline{
+			display: block;
+		}
+		&.online{
+			background: $status-color-online;
+			font-weight: 600;
+			@include online-effect();
+		}
+		&.offline{
+			background: $status-color-offline;
+		}
+	}
+}

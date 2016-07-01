@@ -1,0 +1,38 @@
+@-webkit-keyframes expand {
+	0% {
+		width: 0;
+		height: 0;
+		margin-left: 0;
+		margin-top: 0;
+		box-shadow: 0 0 3px 1px #b19dd8,inset 0 0 3px 1px #b19dd8
+	}
+
+	100% {
+		width: 160px;
+		height: 160px;
+		margin-left: -80px;
+		margin-top: -80px;
+		box-shadow: 0 0 25px 3px #b19dd8,inset 0 0 25px 3px #b19dd8
+	}
+}
+
+@keyframes expand {
+	0% {
+		width: 0;
+		height: 0;
+		margin-left: 0;
+		margin-top: 0;
+		box-shadow: 0 0 3px 1px #b19dd8,inset 0 0 3px 1px #b19dd8
+	}
+
+	100% {
+		width: 160px;
+		height: 160px;
+		margin-left: -80px;
+		margin-top: -80px;
+		box-shadow: 0 0 25px 3px #b19dd8,inset 0 0 25px 3px #b19dd8
+	}
+}
+
+$font-main: 'Open Sans', sans-serif;
+$logo-size: 80px;

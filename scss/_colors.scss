@@ -1,0 +1,7 @@
+$background-color: #141414;
+$container-color: #282828;
+$container-color-light: lighten($container-color, 5%);
+$container-color-shadow: darken($container-color, 5%);
+$status-color-online: #6441a4;
+$status-color-offline: $container-color-shadow;
+$text-color: #D3D3D3;

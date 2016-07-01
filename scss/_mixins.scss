@@ -1,0 +1,33 @@
+@mixin box($h, $w){
+	height: $h;
+	width: $w;
+}
+
+@mixin user-select($a){
+	-moz-user-select: $a;
+	-webkit-user-select: $a;
+	-ms-user-select: $a;
+	user-select: $a;
+}
+
+@mixin online-effect(){
+	&:after, &:before {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-radius: 999px;
+		top: 50%;
+		left: 50%;
+		z-index: 1;
+	}
+	&:after {
+		-webkit-animation: expand 1500ms infinite 750ms ease-in;
+		animation: expand 1500ms infinite 750ms ease-in;
+	}
+	&:before {
+		-webkit-animation: expand 1500ms infinite ease-in;
+		animation: expand 1500ms infinite ease-in;
+	}
+}
