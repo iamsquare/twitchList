@@ -2,12 +2,13 @@ var app = angular.module("twitchList");
 
 var MainController = function(TwitchListFactory){
 
+	var self = this;
 	var channels = TwitchListFactory.splitAddressSearch(",").sort();
 
-	var results = this.results = [];
+	self.results = [];
 
 	angular.forEach(channels, function(value){
-		results.push(TwitchListFactory.requestStream(value));
+		self.results.push(TwitchListFactory.requestStream(value));
 	});
 };
 

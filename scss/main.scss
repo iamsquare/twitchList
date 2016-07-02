@@ -17,6 +17,7 @@ html {
 
 body {
 	font-family: $font-main;
+	font-size: 1.1em;
 	@include user-select(none);
 	display: flex;
 	height: 100%;
@@ -66,7 +67,7 @@ code {
 .stream-container {
 	background: $container-color;
 	width: 100%;
-	padding: 20px;
+	padding: 15px;
 	margin: 0 0 2px 0;
 	display: flex;
 	flex-direction: row;
@@ -83,6 +84,7 @@ code {
 		text-align: center;
 	}
 	.stream-name {
+		color: $text-color-dark;
 		width: 30%;
 		font-style: italic;
 	}

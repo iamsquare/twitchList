@@ -6,3 +6,4 @@ $status-color-online: #6441a4;
 $background-color-secondary: darken($status-color-online, 33%);
 $status-color-offline: $container-color-shadow;
 $text-color: #D3D3D3;
+$text-color-dark: darken($text-color, 10%);
