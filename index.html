@@ -16,14 +16,14 @@
 					<div class="stream-status-container {{result.status}}" ng-bind="result.status">
 					</div>
 				</div>
-				<p class="stream-name">@<span ng-bind="result.name"></span></p>
-				<p class="stream-title" ng-bind="result.title"></p>
+				<span class="stream-name" ng-bind="'@'+result.name"></span>
+				<span class="stream-title" ng-bind="result.title"></span>
 			</a>
 		</div>
 		<script src="js/angular.min.js"></script>
-		<script src="js/app.min.js"></script>
-		<script src="js/controllers.min.js"></script>
-		<script src="js/services.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/controllers.js"></script>
+		<script src="js/services.js"></script>
 	</body>
 
 </html>
