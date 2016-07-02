@@ -12,8 +12,7 @@
 			<h1 class="main-title">Twitch Stream List</h1>
 			<a class="stream-container" href="{{result.url}}" target="_blank" ng-repeat="result in mc.results">
 				<div class="stream-logo-container">
-					<img src="{{result.logo}}" class="stream-logo">
-					<div class="stream-status-container {{result.status}}" ng-bind="result.status">
+					<img src="{{result.logo}}" class="stream-logo"><div class="stream-status-container {{result.status}}" ng-bind="result.status">
 					</div>
 				</div>
 				<span class="stream-name" ng-bind="'@'+result.name"></span>
