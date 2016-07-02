@@ -1,8 +1,8 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html ng-app="twitchList">
 
 	<head>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400,600" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.min.css">
 		<link rel="stylesheet" href="css/main.css">
 	</head>
@@ -10,6 +10,11 @@
 	<body ng-controller="MainController as mc">
 		<div id="main-container" ng-cloak>
 			<h1 class="main-title">Twitch Stream List</h1>
+			<div class="main-instructions" style="color: #fff" ng-if="mc.results.length === 0 ? true : false">
+				<p>Add <span>?</span> and a <span>comma-separated list</span> of names to the address bar, information about the streams will be automatically updated.</p>
+				<p>You can save the link as a bookmark, you will be able to see the list anywhere, anytime.</p>
+				<p><a href="/?zai,sheevergaming,sing_sing">Example <code>?zai,sheevergaming,sing_sing</code></a></p>
+			</div>
 			<a class="stream-container" href="{{result.url}}" target="_blank" ng-repeat="result in mc.results">
 				<div class="stream-logo-container">
 					<img src="{{result.logo}}" class="stream-logo"><div class="stream-status-container {{result.status}}" ng-bind="result.status">
