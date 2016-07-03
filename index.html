@@ -5,10 +5,11 @@
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600" rel="stylesheet">
 		<link rel="stylesheet" href="css/reset.min.css">
 		<link rel="stylesheet" href="css/main.css">
+		<title>Twitch Stream List</title>
 	</head>
 
 	<body ng-controller="MainController as mc">
-		<h1 id="main-title">Twitch Stream List</h1>
+		<h1 class="main-title" ng-if="!mc.disableTutorial">Twitch Stream List</h1>
 		<div id="main-navigator" ng-if="!mc.disableTutorial">
 			<div class="nav-button" ng-click="mc.displayAll()">All</div>
 			<div class="nav-button" ng-click="mc.displayOnline()">Online</div>
@@ -16,6 +17,7 @@
 		</div>
 		<div id="main-container">
 			<div id="main-instructions" ng-if="mc.disableTutorial">
+				<h1 class="main-title">Twitch Stream List</h1>
 				<p>Add <span>?</span> and a <span>comma-separated list</span> of names to the address bar, information about the streams will be automatically updated.</p>
 				<p>You can save the link as a bookmark, you will be able to see the list anywhere, anytime.</p>
 				<p><a href="{{mc.path + '?zai,sheevergaming,sing_sing'}}">Example <code>?zai,sheevergaming,sing_sing</code></a></p>
