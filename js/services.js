@@ -1,6 +1,6 @@
-var app = angular.module("twitchList");
+var app = angular.module("TwitchList.services", []);
 
-var Request = function($http){
+var RequestFactory = function($http){
 	return {
 		get : function(url, successCallback, errorCallback){
 			$http.get(url).then(function(response){
@@ -12,65 +12,62 @@ var Request = function($http){
 	};
 };
 
-Request.$inject = ["$http"];
+RequestFactory.$inject = ["$http"];
 
-var LocationObject = function($window){
+var LocationService = function($window){
 	var search = $window.location.search;
 	var hash = $window.location.hash;
-	return {
-		getSearchSplit : function(char){
-			if(search === "") return [];
-			return search.substr(1, search.length).split(char);
-		},
-		getHashSplit : function(char){
-			if(hash === "") return [];
-			return hash.substr(1, hash.length).split(char);
-		}
+	var path = $window.location.pathname;
+
+	this.getPath = function(){
+		return path;
+	};
+
+	this.getSearchSplit = function(char){
+		if(search === "") return [];
+		return search.substr(1, search.length).split(char);
+	};
+
+	this.getHashSplit = function(char){
+		if(hash === "") return [];
+		return hash.substr(1, hash.length).split(char);
 	};
 };
 
-LocationObject.$inject = ["$window"];
+LocationService.$inject = ["$window"];
 
-var TwitchListFactory = function(Request, LocationObject){
-	return {
-		requestStream : function(value){
+var TwitchListService = function(RequestFactory, LocationService){
+	var baseUrl = "https://api.twitch.tv/kraken/";
+	var playerUrl = "https://player.twitch.tv/?channel=";
 
-			var baseUrl = "https://api.twitch.tv/kraken/";
-			var playerUrl = "https://player.twitch.tv/?channel=";
+	this.requestStream = function(value){
+		var result = {};
 
-			var result = {};
+		result.name = value;
 
-			Request.get(baseUrl + "channels/" + value, function (response){
+		RequestFactory.get(baseUrl + "channels/" + value, function (response){
 
-				result.logo = response.data.logo !== null ? response.data.logo : "img/150x150-placeholder.png";
-				result.name = response.data.name;
-				result.title = response.data.status;
-				result.url = playerUrl + result.name;
+			result.logo = response.data.logo !== null ? response.data.logo : "img/150x150-placeholder.png";
+			result.name = response.data.name;
+			result.title = response.data.status;
+			result.url = playerUrl + result.name;
 
-				Request.get(baseUrl + "streams/" + value, function (response){
-					result.status = response.data.stream !== null ? "online" : "offline";
-				});
-
-			}, function(){
-
-				result.logo = "img/150x150-placeholder.png";
-				result.name = value;
-				result.title = "Account Closed";
-				result.url = "https://www.twitch.tv/404/404";
-
+			RequestFactory.get(baseUrl + "streams/" + value, function (response){
+				result.status = response.data.stream !== null ? "online" : "offline";
 			});
 
-			return result;
-		},
+		});
 
-		splitAddressSearch : function(char){
-			return LocationObject.getSearchSplit(char);
-		}
+		return result;
+	};
+
+	this.splitAddressSearch = function(char){
+		return LocationService.getSearchSplit(char);
 	};
 };
 
-TwitchListFactory.$inject = ["Request", "LocationObject"];
+TwitchListService.$inject = ["RequestFactory", "LocationService"];
 
-app.factory("Request", Request);
-app.factory("LocationObject", LocationObject);
-app.factory("TwitchListFactory", TwitchListFactory);
+app.factory("RequestFactory", RequestFactory);
+app.service("LocationService", LocationService);
+app.service("TwitchListService", TwitchListService);

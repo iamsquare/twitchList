@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="twitchList">
+<html ng-app="TwitchList">
 
 	<head>
 		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600" rel="stylesheet">
@@ -8,20 +8,25 @@
 	</head>
 
 	<body ng-controller="MainController as mc">
-		<div id="main-container" ng-cloak>
-			<h1 class="main-title">Twitch Stream List</h1>
-			<div class="main-instructions" style="color: #fff" ng-if="mc.results.length === 0 ? true : false">
+		<h1 id="main-title">Twitch Stream List</h1>
+		<div id="main-navigator" ng-if="!mc.disableTutorial">
+			<div class="nav-button" ng-click="mc.displayAll()">All</div>
+			<div class="nav-button" ng-click="mc.displayOnline()">Online</div>
+			<div class="nav-button" ng-click="mc.displayOffline()">Offline</div>
+		</div>
+		<div id="main-container">
+			<div id="main-instructions" ng-if="mc.disableTutorial">
 				<p>Add <span>?</span> and a <span>comma-separated list</span> of names to the address bar, information about the streams will be automatically updated.</p>
 				<p>You can save the link as a bookmark, you will be able to see the list anywhere, anytime.</p>
-				<p><a href="/?zai,sheevergaming,sing_sing">Example <code>?zai,sheevergaming,sing_sing</code></a></p>
+				<p><a href="{{mc.path + '?zai,sheevergaming,sing_sing'}}">Example <code>?zai,sheevergaming,sing_sing</code></a></p>
 			</div>
-			<a class="stream-container" href="{{result.url}}" target="_blank" ng-repeat="result in mc.results">
+			<a class="stream-container" href="{{result.url || 'http://twitch.tv/404/404'}}" target="_blank" ng-repeat="result in mc.results">
 				<div class="stream-logo-container">
-					<img src="{{result.logo}}" class="stream-logo"><div class="stream-status-container {{result.status}}" ng-bind="result.status">
-					</div>
+					<img src="{{result.logo || 'img/150x150-placeholder.png'}}" class="stream-logo">
+					<div class="stream-status-container {{result.status || 'stat-hidden'}}" ng-bind="result.status"></div>
 				</div>
 				<span class="stream-name" ng-bind="'@'+result.name"></span>
-				<span class="stream-title" ng-bind="result.title"></span>
+				<span class="stream-title" ng-bind="result.title || 'Account Unavailable'"></span>
 			</a>
 		</div>
 		<script src="js/angular.min.js"></script>

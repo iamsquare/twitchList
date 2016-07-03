@@ -1,73 +1,90 @@
-@import 'variables',
-'mixins',
-'colors',
-'angular';
+@import 'variables', 'mixins', 'colors', 'angular';
 
 * {
 	box-sizing: border-box;
 }
 
+a {
+	text-decoration: none;
+	font-weight: 600;
+	color: $text-color;
+}
+
 html {
 	background: $background-color;
-	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%);
-	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%);
-	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 100%);
-	height: 100%;
+	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%) no-repeat center center fixed;
+	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%) no-repeat center center fixed;
+	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 100%) no-repeat center center fixed;
+	background-size: cover;
 }
 
 body {
-	font-family: $font-main;
-	font-size: 1.1em;
-	@include user-select(none);
-	display: flex;
 	height: 100%;
 	width: 100%;
-}
-
-a {
-	text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	@include user-select(none);
 	color: $text-color;
-	font-weight: 600;
+	font-family: $font-main;
+	font-size: 1.1em;
+	margin: $spacing-size 0;
 }
 
-code {
-	@include user-select(text);
+#main-title{
+	font-size: 2em;
+	font-weight: 600;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#main-navigator {
+	width: 60%;
+	height: 30px;
+	margin: $spacing-size auto 2px;
+	clear: both;
 	background: $container-color;
-	font-style: italic;
-	padding: 0 10px;
+	text-align: center;
+	line-height: 30px;
+	.nav-button {
+		width: percentage(1/3);
+		float: left;
+		&:hover{
+			background: $container-color-light;
+			cursor: pointer;
+		}
+	}
 }
 
 #main-container {
-	align-self: center;
-	margin: 3% auto;
 	width: 60%;
-	color: $text-color;
-	.main-title {
-		font-size: 2em;
-		font-weight: 600;
-		text-align: center;
-		text-transform: uppercase;
-		margin: 0 0 20px 0;
+}
+
+#main-instructions {
+	width: 60%;
+	position: absolute;
+	top: 50%;
+	font-weight: 300;
+	text-align: center;
+	align-self: center;
+	p {
+		margin-bottom: 10px;
 	}
-	.main-instructions {
-		width: 80%;
-		margin: 0 auto;
-		font-size: 1.1em;
-		font-weight: 300;
-		text-align: center;
-		p {
-			margin-bottom: 15px;
-		}
-		span {
-			font-style: italic;
-		}
+	code {
+		background: $container-color;
+		@include user-select(text);
+		padding: 0 10px;
+		font-style: italic;
+	}
+	span {
+		font-style: italic;
 	}
 }
 
 .stream-container {
 	background: $container-color;
 	width: 100%;
-	padding: 15px;
+	padding: $spacing-size;
 	margin: 0 0 2px 0;
 	display: flex;
 	flex-direction: row;
@@ -76,50 +93,48 @@ code {
 	&:hover {
 		background: $container-color-light;
 	}
-	.stream-name,
-	.stream-title {
+	.stream-name, .stream-title {
 		align-self: center;
-		color: $text-color;
-		margin-left: 20px;
+		margin: 0 0 0 $spacing-size;
 		text-align: center;
 	}
 	.stream-name {
-		color: $text-color-dark;
 		width: 30%;
+		color: $text-color-dark;
 		font-style: italic;
+		font-weight: 300;
 	}
 	.stream-title {
 		width: 70%;
 		font-weight: 600;
 	}
-}
-
-.stream-logo-container {
-	border: $container-color-shadow solid 2px;
-	.stream-logo {
-		@include box($logo-size, $logo-size);
-	}
-	.stream-status-container {
-		width: $logo-size;
-		padding: 7px 0;
-		position: relative;
-		display: none;
-		overflow: hidden;
-		color: $text-color;
-		font-size: 11px;
-		text-align: center;
-		text-transform: uppercase;
-		&.online,
-		&.offline {
-			display: block;
+	.stream-logo-container {
+		border: $container-color-shadow solid 2px;
+		.stream-logo {
+			@include box($logo-size, $logo-size);
+			background: #fff;
 		}
-		&.online {
-			background: $status-color-online;
-			font-weight: 600;
-			@include online-effect();
-		}
-		&.offline {
-			background: $status-color-offline;
+		.stream-status-container {
+			width: $logo-size;
+			padding: 7px 0;
+			position: relative;
+			display: none;
+			overflow: hidden;
+			font-size: 11px;
+			text-align: center;
+			text-transform: uppercase;
+			&.online,
+			&.offline {
+				display: block;
+			}
+			&.online {
+				background: $status-color-online;
+				font-weight: 600;
+				@include online-effect();
+			}
+			&.offline {
+				background: $status-color-offline;
+			}
 		}
 	}
 }

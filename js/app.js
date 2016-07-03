@@ -1,1 +1,1 @@
-angular.module("twitchList", []);
+angular.module("TwitchList", ["TwitchList.services", "TwitchList.controllers"]);
