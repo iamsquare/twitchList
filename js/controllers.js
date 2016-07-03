@@ -12,6 +12,7 @@ var MainController = function(TwitchListService, LocationService){
 
 	if(results.length === 0) self.disableTutorial = true;
 
+	self.active = "All";
 	self.results = [];
 	self.path = LocationService.getPath();
 
@@ -19,32 +20,25 @@ var MainController = function(TwitchListService, LocationService){
 		angular.forEach(results, function(value){
 			this.push(value);
 		}, self.results = []);
+		self.active = "All";
 	};
 
 	self.displayOnline = function(){
 		angular.forEach(results, function(value){
 			if(value.status === "online") this.push(value);
 		}, self.results = []);
+		self.active = "Online";
 	};
 
 	self.displayOffline = function(){
 		angular.forEach(results, function(value){
 			if(value.status !== "online") this.push(value);
 		}, self.results = []);
+		self.active = "Offline";
 	};
 
-	/*self.sort = function(value){
-		self.results.sort(function (a, b){
-			if(a[value] > b[value]){
-				return 1;
-			}
-			if(a[value] === b[value]){
-				return 0;
-			}
-			if(a[value] < b[value]){
-				return -1;
-			}
-		});
+	/*var sortResults = function(compareFn){
+		self.results.sort(compareFn);
 	};*/
 
 	self.displayAll();

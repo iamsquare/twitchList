@@ -3,11 +3,9 @@ var app = angular.module("TwitchList.services", []);
 var RequestFactory = function($http){
 	return {
 		get : function(url, successCallback, errorCallback){
-			$http.get(url).then(function(response){
-				successCallback(response);
-			}, function(response){
-				errorCallback(response);
-			});
+			$http.get(url).then(
+				successCallback,
+				errorCallback);
 		}
 	};
 };
