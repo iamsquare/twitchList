@@ -12,9 +12,9 @@ a {
 
 html {
 	background: $background-color;
-	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%) no-repeat center center fixed;
-	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 100%) no-repeat center center fixed;
-	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 100%) no-repeat center center fixed;
+	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%, $background-color-tertiary 100%) no-repeat center center fixed;
+	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%, $background-color-tertiary 100%) no-repeat center center fixed;
+	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 95%, $background-color-tertiary 100%) no-repeat center center fixed;
 	background-size: cover;
 }
 

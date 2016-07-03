@@ -8,7 +8,7 @@
 		<title>Twitch Stream List</title>
 	</head>
 
-	<body ng-controller="MainController as mc">
+	<body ng-controller="MainController as mc" ng-cloak>
 		<h1 class="main-title" ng-if="!mc.disableTutorial">Twitch Stream List</h1>
 		<div id="main-navigator" ng-if="!mc.disableTutorial">
 			<div class="nav-button" ng-click="mc.displayAll()">All</div>

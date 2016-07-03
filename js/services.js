@@ -18,6 +18,12 @@ var LocationService = function($window){
 	var search = $window.location.search;
 	var hash = $window.location.hash;
 	var path = $window.location.pathname;
+	var unique = function (array) {
+		var seen = {};
+		return array.filter(function(item) {
+			return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+		});
+	};
 
 	this.getPath = function(){
 		return path;
@@ -25,12 +31,12 @@ var LocationService = function($window){
 
 	this.getSearchSplit = function(char){
 		if(search === "") return [];
-		return search.substr(1, search.length).split(char);
+		return unique(search.substr(1, search.length).split(char));
 	};
 
 	this.getHashSplit = function(char){
 		if(hash === "") return [];
-		return hash.substr(1, hash.length).split(char);
+		return unique(hash.substr(1, hash.length).split(char));
 	};
 };
 

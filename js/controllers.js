@@ -3,7 +3,7 @@ var app = angular.module("TwitchList.controllers", []);
 var MainController = function(TwitchListService, LocationService){
 
 	var self = this;
-	var channels = TwitchListService.splitAddressSearch(",").sort();
+	var channels = TwitchListService.splitAddressSearch(",");
 	var results = [];
 
 	angular.forEach(channels, function(value){
@@ -32,6 +32,20 @@ var MainController = function(TwitchListService, LocationService){
 			if(value.status !== "online") this.push(value);
 		}, self.results = []);
 	};
+
+	/*self.sort = function(value){
+		self.results.sort(function (a, b){
+			if(a[value] > b[value]){
+				return 1;
+			}
+			if(a[value] === b[value]){
+				return 0;
+			}
+			if(a[value] < b[value]){
+				return -1;
+			}
+		});
+	};*/
 
 	self.displayAll();
 };
