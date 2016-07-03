@@ -62,6 +62,13 @@ var TwitchListService = function(RequestFactory, LocationService){
 				result.status = response.data.stream !== null ? "online" : "offline";
 			});
 
+		}, function(){
+
+			result.logo = "img/150x150-placeholder.png";
+			result.name = value;
+			result.title = "Account Unavailable";
+			result.url = "http://twitch.tv/404/404";
+
 		});
 
 		return result;
