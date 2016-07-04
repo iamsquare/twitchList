@@ -1,0 +1,10 @@
+$container-color: #282828;
+$container-color-lighter: lighten($container-color, 10%);
+$container-color-darker: darken($container-color, 5%);
+$container-border-color: $container-color-darker;
+$status-color-online: #6441a4;
+$status-color-offline: $container-color-darker;
+$background-color: #141414;
+$background-color-secondary: darken(saturate($status-color-online, 30%), 38%);
+$text-color: #D3D3D3;
+$text-color-darker: darken($text-color, 10%);

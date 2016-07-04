@@ -1,1 +1,195 @@
 @import 'variables', 'mixins', 'colors';
+
+* {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: $text-color;
+}
+
+html {
+	height: 100%;
+	width: 100%;
+	background: $background-color;
+	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
+	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
+	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
+	background-size: cover;
+}
+
+body {
+	font: 400 1.1em 'Open Sans', sans-serif;
+	color: $text-color;
+	@include user-select(none);
+}
+
+#app-container {
+	width: 50%;
+	padding: $spacing-size 0;
+	margin: 0 auto;
+}
+
+#tutorial-container {
+	position: absolute;
+	top: 35%;
+	width: 50%;
+	text-align: center;
+	h1 {
+		font-size: 2em;
+		line-height: 2em;
+		font-weight: 600;
+		text-transform: uppercase;
+		margin-bottom: $spacing-size;
+	}
+	a{
+
+	}
+	i, span{
+		font-style: italic;
+	}
+	span {
+		background: $container-color;
+		padding: 3px 10px;
+	}
+	p {
+		font-weight: 300;
+		margin-bottom: $spacing-size;
+	}
+	a {
+		font-weight: 600;
+	}
+}
+
+.stream-container {
+	background: $container-color;
+	width: 100%;
+	padding: $spacing-size;
+	margin: 0 0 2px 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	&:hover {
+		background: $container-color-lighter;
+	}
+	.stream-name, .stream-title {
+		margin: 0 0 0 $spacing-size;
+		text-align: center;
+	}
+	.stream-name {
+		width: 50%;
+		color: $text-color-darker;
+		font-style: italic;
+		font-weight: 300;
+	}
+	.stream-title {
+		width: 50%;
+		font-weight: 600;
+	}
+	.stream-logo-container {
+		border: $container-border-color solid 2px;
+		.stream-logo {
+			@include box($logo-size, $logo-size);
+			background: #fff;
+		}
+		.stream-status-container {
+			width: $logo-size;
+			padding: 7px 0;
+			position: relative;
+			display: none;
+			overflow: hidden;
+			font-size: 11px;
+			line-height: 11px;
+			text-align: center;
+			text-transform: uppercase;
+			&.online,
+			&.offline {
+				display: block;
+			}
+			&.online {
+				background: $status-color-online;
+				font-weight: 600;
+				@include online-effect();
+			}
+			&.offline {
+				background: $status-color-offline;
+			}
+		}
+	}
+}
+
+#side-panel-button {
+	position: fixed;
+	top: 0;
+	left: 0;
+	@include box(50px, 50px);
+	background: $container-color;
+	text-align: center;
+	line-height: 50px;
+	font-size: 1.3em;
+	transition: all ease-in 0.2s;
+	&:hover {
+		background: $container-color-lighter;
+		cursor: pointer;
+	}
+	&.active {
+		left: 250px;
+	}
+	&.hide {
+		display: none;
+	}
+}
+
+#side-panel {
+	z-index: 10;
+	position: fixed;
+	top: 0;
+	left: -250px;
+	width: 250px;
+	height: 100%;
+	background: $container-color;
+	transition: all ease-in 0.2s;
+	.side-panel-footer, .side-panel-button, .side-panel-separator {
+		height: 50px;
+		width: 100%;
+		text-align: center;
+		line-height: 50px;
+	}
+	.side-panel-separator, .side-panel-button {
+		font-weight: 300;
+	}
+	.side-panel-separator {
+		font-style: italic;
+		margin-bottom: 2px;
+		background: $container-color-lighter;
+	}
+	.side-panel-button {
+		cursor: pointer;
+		transition: all ease-in 0.1s;
+		&:hover {
+			background: $container-color-lighter;
+		}
+	}
+	.side-panel-footer {
+		display: flex;
+		justify-content: space-around;
+		position: absolute;
+		font-size: 1.3em;
+		bottom: 5px;
+		a {
+			transition: all ease-in 0.1s;
+			opacity: 0.5;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+	&.active {
+		left: 0;
+	}
+	&.hide {
+		display: none;
+	}
+}
