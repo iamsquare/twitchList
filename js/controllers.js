@@ -5,8 +5,6 @@ var MainController = function(TwitchListService, LocationService){
 	var channels = TwitchListService.splitAddressHash(",");
 	var results = [];
 
-	console.log(channels);
-
 	angular.forEach(channels, function(value){
 		this.push(TwitchListService.requestStream(value));
 	}, results);
