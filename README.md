@@ -1,7 +1,7 @@
 #jsTwitchList
 Twitch app for FreeCodeCamp zipline: https://www.freecodecamp.com/challenges/use-the-twitchtv-json-api
 
-#Preview as of 03-Jul-16
+#Preview as of 04-Jul-16
 
 ![Home - w/o list](previewHome.png)
 
@@ -13,3 +13,7 @@ Twitch app for FreeCodeCamp zipline: https://www.freecodecamp.com/challenges/use
 
 Extensions used:
 * [angularjs@1.5.7](https://angularjs.org/)
+
+###TODO:
+* Embed player directly into the page.
+* Add a way to insert a new channel in the list.
