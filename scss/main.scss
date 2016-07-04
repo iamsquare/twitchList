@@ -43,15 +43,19 @@ body {
 		text-transform: uppercase;
 		margin-bottom: $spacing-size;
 	}
-	a{
-
+	.fa, .logo {
+		font-size: 1.4em;
+		transition: all ease-in 0.1s;
+		opacity: 0.5;
+		&:hover{
+			opacity: 1;
+		}
 	}
-	i, span{
+	span{
 		font-style: italic;
-	}
-	span {
 		background: $container-color;
-		padding: 3px 10px;
+		padding: 2px 5px;
+		font-weight: 600;
 	}
 	p {
 		font-weight: 300;
@@ -59,6 +63,7 @@ body {
 	}
 	a {
 		font-weight: 600;
+		margin: 0 10px;
 	}
 }
 

@@ -7,6 +7,8 @@ Twitch app for FreeCodeCamp zipline: https://www.freecodecamp.com/challenges/use
 
 ![Home - w/ list](previewList.png)
 
+![Home - w/ list and sidepanel](previewSidePanel.png)
+
 ##[Demo](http://iamsquare.it/twitch/)
 
 Extensions used:

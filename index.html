@@ -17,9 +17,10 @@
 	<div id="app-container">
 		<div id="tutorial-container" ng-show="mc.enableTutorial">
 			<h1>Twitch Stream List</h1>
-			<p>Add <i>?</i> and a <i>comma-separated list</i> of names to the address bar, information about the streams will be automatically updated.</p>
+			<p>Add <span>?</span> and a <span>comma-separated list</span> of names to the address bar, information about the streams will be automatically updated.</p>
 			<p>You can save the link as a bookmark, you will be able to see the list anywhere, anytime.</p>
 			<p><a ng-href="{{mc.path + '?zai,sheevergaming,sing_sing,freecodecamp'}}">Example <span>?zai,sheevergaming,sing_sing,freecodecamp</span></a></p>
+			<p><a href="http://www.iamsquare.it" target="_blank"><i class="logo logo-logo"></i></a>  <a href="http://github.com/squaremarco/jsTwitchList" target="_blank"><i class="fa fa-github-alt"></i></a>  <!--<a href="#" target="_blank"><i class="fa fa-file-code-o"></i></a>--></p>
 		</div>
 		<a class="stream-container" ng-href="{{result.url}}" target="_blank" ng-repeat="result in mc.results">
 			<div class="stream-logo-container">
