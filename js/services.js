@@ -16,26 +16,39 @@ var LocationService = function($window){
 	var search = $window.location.search;
 	var hash = $window.location.hash;
 	var path = $window.location.pathname;
-	var unique = function (array) {
-		var seen = {};
-		return array.filter(function(item) {
-			return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-		});
-	};
 
 	this.getPath = function(){
 		return path;
 	};
 
-	this.getSearchSplit = function(char){
-		if(search === "") return [];
-		return unique(search.substr(1, search.length).split(char));
-	};
+	this.appendSearch = appendSearch;
 
-	this.getHashSplit = function(char){
-		if(hash === "") return [];
-		return unique(hash.substr(1, hash.length).split(char));
-	};
+	this.appendHash = appendHash;
+
+	this.getSearchSplit = function(separator){ return uniqueSplit(search, separator); };
+
+	this.getHashSplit = function(separator){ return uniqueSplit(hash, separator); };
+
+	function appendSearch(value){
+		$window.location.search += value;
+	}
+
+	function appendHash(value){
+		$window.location.hash += value;
+	}
+
+	function unique(array) {
+		var seen = {};
+		return array.filter(function(item) {
+			return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+		});
+	}
+
+	function uniqueSplit(string, separator){
+		if(string === "") return [];
+		console.log("OK");
+		return unique(string.substr(1, string.length).split(separator));
+	}
 };
 
 LocationService.$inject = ["$window"];
@@ -72,8 +85,12 @@ var TwitchListService = function(RequestFactory, LocationService){
 		return result;
 	};
 
-	this.splitAddressSearch = function(char){
-		return LocationService.getSearchSplit(char);
+	this.splitAddressSearch = function(separator){
+		return LocationService.getSearchSplit(separator);
+	};
+
+	this.splitAddressHash = function(separator){
+		return LocationService.getHashSplit(separator);
 	};
 };
 
