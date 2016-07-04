@@ -34,6 +34,9 @@
 	}
 }
 
-$font-main: 'Open Sans', sans-serif;
+[ng-cloak] {
+	display: none;
+}
+
 $logo-size: 70px;
 $spacing-size: 20px;

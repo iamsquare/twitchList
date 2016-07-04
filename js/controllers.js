@@ -1,7 +1,6 @@
-var app = angular.module("TwitchList.controllers", []);
+var controllers = angular.module("twitchList.controllers", []);
 
 var MainController = function(TwitchListService, LocationService){
-
 	var self = this;
 	var channels = TwitchListService.splitAddressSearch(",");
 	var results = [];
@@ -10,11 +9,11 @@ var MainController = function(TwitchListService, LocationService){
 		this.push(TwitchListService.requestStream(value));
 	}, results);
 
-	if(results.length === 0) self.disableTutorial = true;
+	self.enableTutorial = results.length === 0 ? true : false;
 
-	self.active = "All";
 	self.results = [];
 	self.path = LocationService.getPath();
+	self.showPanel = false;
 
 	self.displayAll = function(){
 		angular.forEach(results, function(value){
@@ -37,13 +36,9 @@ var MainController = function(TwitchListService, LocationService){
 		self.active = "Offline";
 	};
 
-	/*var sortResults = function(compareFn){
-		self.results.sort(compareFn);
-	};*/
-
 	self.displayAll();
 };
 
-MainController.$inject = ["TwitchListService", "LocationService"];
+MainController.$inject = ["twitchListService", "locationService"];
 
-app.controller("MainController", MainController);
+controllers.controller("mainController", MainController);

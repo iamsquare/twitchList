@@ -1,4 +1,4 @@
-var app = angular.module("TwitchList.services", []);
+var services = angular.module("twitchList.services", []);
 
 var RequestFactory = function($http){
 	return {
@@ -77,8 +77,8 @@ var TwitchListService = function(RequestFactory, LocationService){
 	};
 };
 
-TwitchListService.$inject = ["RequestFactory", "LocationService"];
+TwitchListService.$inject = ["requestFactory", "locationService"];
 
-app.factory("RequestFactory", RequestFactory);
-app.service("LocationService", LocationService);
-app.service("TwitchListService", TwitchListService);
+services.factory("requestFactory", RequestFactory);
+services.service("locationService", LocationService);
+services.service("twitchListService", TwitchListService);

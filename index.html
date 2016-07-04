@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="TwitchList">
+<html>
 
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600" rel="stylesheet">
 	<link rel="stylesheet" href="css/reset.min.css">
 	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/logo-font.css">
 	<link rel="stylesheet" href="css/main.css">
 	<title>Twitch Stream List</title>
 	<meta property="og:title" content="Twitch Stream List" />
@@ -12,28 +13,34 @@
 	<meta property="og:description" content="Add ? and a comma-separated list of names to the address bar, information about the streams will be automatically updated. You can save the link as a bookmark, you will be able to see the list anywhere, anytime." />
 </head>
 
-<body ng-controller="MainController as mc" ng-cloak>
-	<h1 class="main-title" ng-if="!mc.disableTutorial">Twitch Stream List</h1>
-	<div id="main-navigator" ng-if="!mc.disableTutorial">
-		<div class="nav-button" ng-click="mc.displayAll()">All</div>
-		<div class="nav-button" ng-click="mc.displayOnline()">Online</div>
-		<div class="nav-button" ng-click="mc.displayOffline()">Offline</div>
-	</div>
-	<div id="main-container">
-		<div id="main-instructions" ng-if="mc.disableTutorial">
-			<h1 class="main-title">Twitch Stream List</h1>
-			<p>Add <span>?</span> and a <span>comma-separated list</span> of names to the address bar, information about the streams will be automatically updated.</p>
+<body ng-app="twitchList" ng-controller="mainController as mc" ng-cloak>
+	<div id="app-container">
+		<div id="tutorial-container" ng-show="mc.enableTutorial">
+			<h1>Twitch Stream List</h1>
+			<p>Add <i>?</i> and a <i>comma-separated list</i> of names to the address bar, information about the streams will be automatically updated.</p>
 			<p>You can save the link as a bookmark, you will be able to see the list anywhere, anytime.</p>
-			<p><a ng-href="{{mc.path + '?zai,sheevergaming,sing_sing,freecodecamp'}}">Example <code>?zai,sheevergaming,sing_sing,freecodecamp</code></a></p>
+			<p><a ng-href="{{mc.path + '?zai,sheevergaming,sing_sing,freecodecamp'}}">Example <span>?zai,sheevergaming,sing_sing,freecodecamp</span></a></p>
 		</div>
 		<a class="stream-container" ng-href="{{result.url}}" target="_blank" ng-repeat="result in mc.results">
 			<div class="stream-logo-container">
 				<img ng-src="{{result.logo}}" class="stream-logo">
 				<div ng-class="'stream-status-container ' + result.status" ng-bind="result.status"></div>
 			</div>
-			<span class="stream-name" ng-bind="'@'+result.name"></span>
+			<span class="stream-name" ng-bind="'@' + result.name"></span>
 			<span class="stream-title" ng-bind="result.title"></span>
 		</a>
+	</div>
+	<div id="side-panel-button" ng-class="{'active': mc.showPanel, 'hide': mc.enableTutorial}" ng-click="mc.showPanel=!mc.showPanel"><i ng-class="{'fa fa-bars': !mc.showPanel, 'fa fa-times': mc.showPanel}"></i></div>
+	<div id="side-panel" ng-class="{'active': mc.showPanel, 'hide' : mc.enableTutorial}">
+		<div class="side-panel-separator">Filters</div>
+		<div class="side-panel-button" ng-click="mc.displayAll()">All</div>
+		<div class="side-panel-button" ng-click="mc.displayOnline()">Online</div>
+		<div class="side-panel-button" ng-click="mc.displayOffline()">Offline</div>
+		<div class="side-panel-footer">
+			<a href="http://www.iamsquare.it" target="_blank"><i class="logo logo-logo"></i></a>
+			<a href="http://github.com/squaremarco/jsTwitchList" target="_blank"><i class="fa fa-github-alt"></i></a>
+			<!--<a href="#" target="_blank"><i class="fa fa-file-code-o"></i></a>-->
+		</div>
 	</div>
 	<script src="js/angular.min.js"></script>
 	<script src="js/app.min.js"></script>
