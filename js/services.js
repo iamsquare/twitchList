@@ -46,7 +46,6 @@ var LocationService = function($window){
 
 	function uniqueSplit(string, separator){
 		if(string === "") return [];
-		console.log("OK");
 		return unique(string.substr(1, string.length).split(separator));
 	}
 };
