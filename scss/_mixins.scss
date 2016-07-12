@@ -1,26 +1,27 @@
-@mixin box($h, $w){
-	height: $h;
+@mixin box($h, $w) {
 	width: $w;
+	height: $h;
 }
 
-@mixin user-select($a){
-	-moz-user-select: $a;
+@mixin user-select($a) {
 	-webkit-user-select: $a;
+	-moz-user-select: $a;
 	-ms-user-select: $a;
 	user-select: $a;
 }
 
-@mixin online-effect(){
-	&:after, &:before {
-		content: '';
-		display: block;
+@mixin online-effect() {
+	&:after,
+	&:before {
 		position: absolute;
-		width: 0;
-		height: 0;
-		border-radius: 999px;
+		z-index: 1;
 		top: 50%;
 		left: 50%;
-		z-index: 1;
+		display: block;
+		width: 0;
+		height: 0;
+		content: "";
+		border-radius: 999px;
 	}
 	&:after {
 		-webkit-animation: expand 1500ms infinite 750ms ease-in;

@@ -1,4 +1,4 @@
-@import 'variables', 'mixins', 'colors';
+@import "variables", "mixins", "colors";
 
 * {
 	box-sizing: border-box;
@@ -10,8 +10,8 @@ a {
 }
 
 html {
-	height: 100%;
 	width: 100%;
+	height: 100%;
 	background: $background-color;
 	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
 	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
@@ -20,34 +20,35 @@ html {
 }
 
 body {
-	font: 400 1.1em 'Open Sans', sans-serif;
+	font: 400 1.1em "Open Sans", sans-serif;
 	color: $text-color;
+
 	@include user-select(none);
 }
 
 input {
+	font: 600 1.1em "Open Sans", sans-serif;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	color: $text-color;
 	border: none;
 	border-bottom: 2px solid $text-color;
-	background: none;
-	text-align: center;
-	font: 600 1.1em 'Open Sans', sans-serif;
-	color: $text-color;
-	padding: 0;
-	margin: 0;
 	outline: none;
+	background: none;
 }
 
 form {
-	font: 300 1.1em 'Open Sans', sans-serif;
-	padding: 0;
+	font: 300 1.1em "Open Sans", sans-serif;
 	margin: 0;
+	padding: 0;
 	text-align: center;
 }
 
 #app-container {
 	width: 50%;
-	padding: $spacing-size 0;
 	margin: 0 auto;
+	padding: $spacing-size 0;
 }
 
 #tutorial-container {
@@ -57,24 +58,25 @@ form {
 	text-align: center;
 	h1 {
 		font-size: 2em;
-		line-height: 2em;
 		font-weight: 600;
-		text-transform: uppercase;
+		line-height: 2em;
 		margin-bottom: $spacing-size;
+		text-transform: uppercase;
 	}
-	.fa, .logo {
+	.fa,
+	.logo {
 		font-size: 1.4em;
-		transition: all ease-in 0.1s;
-		opacity: 0.5;
-		&:hover{
+		transition: all ease-in .1s;
+		opacity: .5;
+		&:hover {
 			opacity: 1;
 		}
 	}
-	span{
-		font-style: italic;
-		background: $container-color;
-		padding: 2px 5px;
+	span {
 		font-weight: 600;
+		font-style: italic;
+		padding: 2px 5px;
+		background: $container-color;
 	}
 	p {
 		font-weight: 300;
@@ -91,45 +93,48 @@ form {
 }
 
 .stream-container {
-	background: $container-color;
-	width: 100%;
-	padding: $spacing-size;
-	margin: 0 0 2px 0;
 	display: flex;
 	flex-direction: row;
+	width: 100%;
+	margin: 0 0 2px 0;
+	padding: $spacing-size;
+	background: $container-color;
+
 	align-items: center;
 	justify-content: space-between;
 	&:hover {
 		background: $container-color-lighter;
 	}
-	.stream-name, .stream-title {
+	.stream-name,
+	.stream-title {
 		margin: 0 0 0 $spacing-size;
 		text-align: center;
 	}
 	.stream-name {
+		font-weight: 300;
+		font-style: italic;
 		width: 50%;
 		color: $text-color-darker;
-		font-style: italic;
-		font-weight: 300;
 	}
 	.stream-title {
-		width: 50%;
 		font-weight: 600;
+		width: 50%;
 	}
 	.stream-logo-container {
 		border: $container-border-color solid 2px;
 		.stream-logo {
+			background: #FFF;
+
 			@include box($logo-size, $logo-size);
-			background: #fff;
 		}
 		.stream-status-container {
-			width: $logo-size;
-			padding: 7px 0;
+			font-size: 11px;
+			line-height: 11px;
 			position: relative;
 			display: none;
 			overflow: hidden;
-			font-size: 11px;
-			line-height: 11px;
+			width: $logo-size;
+			padding: 7px 0;
 			text-align: center;
 			text-transform: uppercase;
 			&.online,
@@ -137,8 +142,9 @@ form {
 				display: block;
 			}
 			&.online {
-				background: $status-color-online;
 				font-weight: 600;
+				background: $status-color-online;
+
 				@include online-effect();
 			}
 			&.offline {
@@ -149,18 +155,19 @@ form {
 }
 
 #side-panel-button {
+	font-size: 1.3em;
+	line-height: 50px;
 	position: fixed;
 	top: 0;
 	left: 0;
-	@include box(50px, 50px);
-	background: $container-color;
+	transition: all ease-in .2s;
 	text-align: center;
-	line-height: 50px;
-	font-size: 1.3em;
-	transition: all ease-in 0.2s;
+	background: $container-color;
+
+	@include box(50px, 50px);
 	&:hover {
-		background: $container-color-lighter;
 		cursor: pointer;
+		background: $container-color-lighter;
 	}
 	&.active {
 		left: 250px;
@@ -171,21 +178,24 @@ form {
 }
 
 #side-panel {
-	z-index: 10;
 	position: fixed;
+	z-index: 10;
 	top: 0;
 	left: -250px;
 	width: 250px;
 	height: 100%;
+	transition: all ease-in .2s;
 	background: $container-color;
-	transition: all ease-in 0.2s;
-	.side-panel-footer, .side-panel-button, .side-panel-separator {
-		height: 50px;
-		width: 100%;
-		text-align: center;
+	.side-panel-footer,
+	.side-panel-button,
+	.side-panel-separator {
 		line-height: 50px;
+		width: 100%;
+		height: 50px;
+		text-align: center;
 	}
-	.side-panel-separator, .side-panel-button {
+	.side-panel-separator,
+	.side-panel-button {
 		font-weight: 300;
 	}
 	.side-panel-separator {
@@ -195,22 +205,23 @@ form {
 	}
 	.side-panel-button {
 		cursor: pointer;
-		transition: all ease-in 0.1s;
+		transition: all ease-in .1s;
 		&:hover {
 			background: $container-color-lighter;
 		}
 	}
 	.side-panel-footer {
-		display: flex;
-		justify-content: space-around;
-		position: absolute;
 		font-size: 1.3em;
+		position: absolute;
 		bottom: 5px;
+		display: flex;
+
+		justify-content: space-around;
 		a {
-			transition: all ease-in 0.1s;
-			opacity: 0.5;
+			transition: all ease-in .1s;
+			opacity: .5;
 			&:hover {
-				opacity: 0.8;
+				opacity: .8;
 			}
 		}
 	}
