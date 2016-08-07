@@ -4,5 +4,6 @@
 /bower_components/
 /node_modules/
 .brackets.json
-*.sublime-*
-.sublime-*
+*.sublime*
+.sublime*
+sublime*
