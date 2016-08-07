@@ -12,7 +12,7 @@ Twitch app for FreeCodeCamp zipline: https://www.freecodecamp.com/challenges/use
 ##[Demo](http://iamsquare.it/twitch/)
 
 Extensions used:
-* [angularjs@1.5.7](https://angularjs.org/)
+* [angularjs@1.5.8](https://angularjs.org/)
 
 ###TODO:
 * Embed player directly into the page.

@@ -35,11 +35,16 @@ gulp.task("uglifyCSS", function(cb){
 
 gulp.task("webpack", function(cb){
 	var options = {
-		entry: "./app/app.js",
-		output: {
+		entry: {
+			app: './app/app.js',
+			vendor: ['angular']
+		},output: {
 			path: "js",
 			filename: "app.bundle.js"
-		}
+		},
+		plugins: [
+		new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+		]
 	};
 	webpack(options, function(err, stats) {
 		if(err) throw new gutil.PluginError("webpack", err);
