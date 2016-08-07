@@ -1,5 +1,3 @@
-var controllers = angular.module("twitchList.controllers", []);
-
 var MainController = function(TwitchListService, LocationService){
 	var self = this;
 	var channels = TwitchListService.splitAddressHash(",");
@@ -60,4 +58,4 @@ var MainController = function(TwitchListService, LocationService){
 
 MainController.$inject = ["twitchListService", "locationService"];
 
-controllers.controller("mainController", MainController);
+module.exports = MainController;
