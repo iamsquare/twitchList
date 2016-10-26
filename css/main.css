@@ -1,0 +1,236 @@
+@-webkit-keyframes expand {
+  0% {
+    width: 0;
+    height: 0;
+    margin-top: 0;
+    margin-left: 0;
+    box-shadow: 0 0 3px 1px #B19DD8,inset 0 0 3px 1px #B19DD8; }
+  100% {
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+    box-shadow: 0 0 25px 3px #B19DD8,inset 0 0 25px 3px #B19DD8; } }
+
+@keyframes expand {
+  0% {
+    width: 0;
+    height: 0;
+    margin-top: 0;
+    margin-left: 0;
+    box-shadow: 0 0 3px 1px #B19DD8,inset 0 0 3px 1px #B19DD8; }
+  100% {
+    width: 160px;
+    height: 160px;
+    margin-top: -80px;
+    margin-left: -80px;
+    box-shadow: 0 0 25px 3px #B19DD8,inset 0 0 25px 3px #B19DD8; } }
+
+[ng-cloak] {
+  display: none; }
+
+* {
+  box-sizing: border-box; }
+
+a {
+  text-decoration: none;
+  color: #D3D3D3; }
+
+html {
+  width: 100%;
+  height: 100%;
+  background: #141414;
+  background: -moz-radial-gradient(center, ellipse cover, #141414 0%, #0e051e 95%) no-repeat center center fixed;
+  background: -webkit-radial-gradient(center, ellipse cover, #141414 0%, #0e051e 95%) no-repeat center center fixed;
+  background: radial-gradient(ellipse at center, #141414 0%, #0e051e 95%) no-repeat center center fixed;
+  background-size: cover; }
+
+body {
+  font: 400 1.1em "Open Sans", sans-serif;
+  color: #D3D3D3;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+input {
+  font: 600 1.1em "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #D3D3D3;
+  border: none;
+  border-bottom: 2px solid #D3D3D3;
+  outline: none;
+  background: none; }
+
+form {
+  font: 300 1.1em "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
+
+#app-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px 0; }
+
+#tutorial-container {
+  position: absolute;
+  top: 35%;
+  width: 50%;
+  text-align: center; }
+  #tutorial-container h1 {
+    font-size: 2em;
+    font-weight: 600;
+    line-height: 2em;
+    margin-bottom: 20px;
+    text-transform: uppercase; }
+  #tutorial-container .fa,
+  #tutorial-container .logo {
+    font-size: 1.4em;
+    transition: all ease-in .1s;
+    opacity: .5; }
+    #tutorial-container .fa:hover,
+    #tutorial-container .logo:hover {
+      opacity: 1; }
+  #tutorial-container span {
+    font-weight: 600;
+    font-style: italic;
+    padding: 2px 5px;
+    background: #282828; }
+  #tutorial-container p {
+    font-weight: 300;
+    margin-bottom: 20px; }
+  #tutorial-container a {
+    font-weight: 600;
+    margin: 0 10px; }
+
+.channel-form {
+  margin-bottom: 20px; }
+
+.stream-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0 0 2px 0;
+  padding: 20px;
+  background: #282828;
+  align-items: center;
+  justify-content: space-between; }
+  .stream-container:hover {
+    background: #424242; }
+  .stream-container .stream-name,
+  .stream-container .stream-title {
+    margin: 0 0 0 20px;
+    text-align: center; }
+  .stream-container .stream-name {
+    font-weight: 300;
+    font-style: italic;
+    width: 50%;
+    color: #bababa; }
+  .stream-container .stream-title {
+    font-weight: 600;
+    width: 50%; }
+  .stream-container .stream-logo-container {
+    border: #1b1b1b solid 2px; }
+    .stream-container .stream-logo-container .stream-logo {
+      background: #FFF;
+      width: 70px;
+      height: 70px; }
+    .stream-container .stream-logo-container .stream-status-container {
+      font-size: 11px;
+      line-height: 11px;
+      position: relative;
+      display: none;
+      overflow: hidden;
+      width: 70px;
+      padding: 7px 0;
+      text-align: center;
+      text-transform: uppercase; }
+      .stream-container .stream-logo-container .stream-status-container.online, .stream-container .stream-logo-container .stream-status-container.offline {
+        display: block; }
+      .stream-container .stream-logo-container .stream-status-container.online {
+        font-weight: 600;
+        background: #6441A4; }
+        .stream-container .stream-logo-container .stream-status-container.online:after, .stream-container .stream-logo-container .stream-status-container.online:before {
+          position: absolute;
+          z-index: 1;
+          top: 50%;
+          left: 50%;
+          display: block;
+          width: 0;
+          height: 0;
+          content: "";
+          border-radius: 999px; }
+        .stream-container .stream-logo-container .stream-status-container.online:after {
+          -webkit-animation: expand 1500ms infinite 750ms ease-in;
+          animation: expand 1500ms infinite 750ms ease-in; }
+        .stream-container .stream-logo-container .stream-status-container.online:before {
+          -webkit-animation: expand 1500ms infinite ease-in;
+          animation: expand 1500ms infinite ease-in; }
+      .stream-container .stream-logo-container .stream-status-container.offline {
+        background: #1b1b1b; }
+
+#side-panel-button {
+  font-size: 1.3em;
+  line-height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all ease-in .2s;
+  text-align: center;
+  background: #282828;
+  width: 50px;
+  height: 50px; }
+  #side-panel-button:hover {
+    cursor: pointer;
+    background: #424242; }
+  #side-panel-button.active {
+    left: 250px; }
+  #side-panel-button.hide {
+    display: none; }
+
+#side-panel {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  transition: all ease-in .2s;
+  background: #282828; }
+  #side-panel .side-panel-footer,
+  #side-panel .side-panel-button,
+  #side-panel .side-panel-separator {
+    line-height: 50px;
+    width: 100%;
+    height: 50px;
+    text-align: center; }
+  #side-panel .side-panel-separator,
+  #side-panel .side-panel-button {
+    font-weight: 300; }
+  #side-panel .side-panel-separator {
+    font-style: italic;
+    margin-bottom: 2px;
+    background: #424242; }
+  #side-panel .side-panel-button {
+    cursor: pointer;
+    transition: all ease-in .1s; }
+    #side-panel .side-panel-button:hover {
+      background: #424242; }
+  #side-panel .side-panel-footer {
+    font-size: 1.3em;
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    justify-content: space-around; }
+    #side-panel .side-panel-footer a {
+      transition: all ease-in .1s;
+      opacity: .5; }
+      #side-panel .side-panel-footer a:hover {
+        opacity: .8; }
+  #side-panel.active {
+    left: 0; }
+  #side-panel.hide {
+    display: none; }

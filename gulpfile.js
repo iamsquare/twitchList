@@ -1,11 +1,11 @@
 var gulp = require("gulp");
 var gutil = require("gulp-util");
 var rename = require("gulp-rename");
+var pump = require("pump");
 var sass = require("gulp-sass");
 var csso = require("gulp-csso");
 var uglify = require("gulp-uglify");
 var webpack = require("webpack");
-var pump = require("pump");
 
 gulp.task("compileSASS", function(cb){
 	var src = "scss/*.scss";
@@ -34,16 +34,19 @@ gulp.task("uglifyCSS", function(cb){
 });
 
 gulp.task("webpack", function(cb){
+	var src = "./app/app.js";
+	var dest = "app.bundle.js";
 	var options = {
 		entry: {
-			app: './app/app.js',
-			vendor: ['angular']
-		},output: {
+			app: src,
+			vendor: ["angular"]
+		},
+		output: {
 			path: "js",
-			filename: "app.bundle.js"
+			filename: dest
 		},
 		plugins: [
-		new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
+		new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js")
 		]
 	};
 	webpack(options, function(err, stats) {
@@ -66,7 +69,8 @@ gulp.task("uglifyJS", function(cb){
 		], cb);
 });
 
-gulp.task("compile", gulp.parallel("webpack", "compileSASS"));
+
+gulp.task("compile", gulp.parallel("webpack"));
 
 gulp.task("uglify", gulp.parallel("uglifyJS", "uglifyCSS"));
 
