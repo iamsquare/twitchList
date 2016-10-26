@@ -30,10 +30,6 @@ var TwitchListService = function(RequestFactory, LocationService){
 		return result;
 	};
 
-	this.splitAddressSearch = function(separator){
-		return LocationService.getSearchSplit(separator);
-	};
-
 	this.splitAddressHash = function(separator){
 		return LocationService.getHashSplit(separator);
 	};

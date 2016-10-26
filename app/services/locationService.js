@@ -1,5 +1,4 @@
 var LocationService = function($window){
-	var search = $window.location.search;
 	var hash = $window.location.hash;
 	var path = $window.location.pathname;
 
@@ -7,23 +6,15 @@ var LocationService = function($window){
 		return path;
 	};
 
-	this.appendSearch = appendSearch;
-
 	this.appendHash = appendHash;
 
-	this.getSearchSplit = function(separator){ return uniqueSplit(search, separator); };
-
 	this.getHashSplit = function(separator){ return uniqueSplit(hash, separator); };
-
-	function appendSearch(value){
-		$window.location.search += value;
-	}
 
 	function appendHash(value){
 		$window.location.hash += value;
 	}
 
-	function unique(array) {
+	function isUnique(array) {
 		var seen = {};
 		return array.filter(function(item) {
 			return seen.hasOwnProperty(item) ? false : (seen[item] = true);
@@ -32,7 +23,7 @@ var LocationService = function($window){
 
 	function uniqueSplit(string, separator){
 		if(string === "") return [];
-		return unique(string.substr(1, string.length).split(separator));
+		return isUnique(string.substr(1, string.length).split(separator));
 	}
 };
 

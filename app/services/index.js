@@ -1,4 +1,3 @@
-var angular = require('angular');
 var services = angular.module("twitchList.services", []);
 
 services.factory("requestFactory", require("./requestFactory"));

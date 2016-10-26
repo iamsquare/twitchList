@@ -3,12 +3,10 @@ webpackJsonp([0],[
 /***/ function(module, exports, __webpack_require__) {
 
 	var angular = __webpack_require__(1);
+	angular.module("twitchList", ["twitchList.controllers", "twitchList.services"]);
 
 	__webpack_require__(3);
 	__webpack_require__(5);
-
-	angular.module("twitchList", ["twitchList.controllers", "twitchList.services"]);
-
 
 /***/ },
 /* 1 */,
@@ -16,9 +14,6 @@ webpackJsonp([0],[
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict'
-
-	var angular = __webpack_require__(1);
 	var controllers = angular.module("twitchList.controllers", []);
 
 	controllers.controller("mainController", __webpack_require__(4));
@@ -93,7 +88,6 @@ webpackJsonp([0],[
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var angular = __webpack_require__(1);
 	var services = angular.module("twitchList.services", []);
 
 	services.factory("requestFactory", __webpack_require__(6));
@@ -107,9 +101,11 @@ webpackJsonp([0],[
 	var RequestFactory = function($http){
 		return {
 			get : function(url, successCallback, errorCallback){
-				$http.get(url).then(
-					successCallback,
-					errorCallback);
+				$http.get(url, {
+					headers: {
+						'Client-ID': '24geemvcr6deyxmx8ocqnmr7v3l8hg9'
+					}
+				}).then(successCallback, errorCallback);
 			}
 		};
 	};
@@ -118,12 +114,12 @@ webpackJsonp([0],[
 
 	module.exports = RequestFactory;
 
+
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
 	var LocationService = function($window){
-		var search = $window.location.search;
 		var hash = $window.location.hash;
 		var path = $window.location.pathname;
 
@@ -131,23 +127,15 @@ webpackJsonp([0],[
 			return path;
 		};
 
-		this.appendSearch = appendSearch;
-
 		this.appendHash = appendHash;
 
-		this.getSearchSplit = function(separator){ return uniqueSplit(search, separator); };
-
 		this.getHashSplit = function(separator){ return uniqueSplit(hash, separator); };
-
-		function appendSearch(value){
-			$window.location.search += value;
-		}
 
 		function appendHash(value){
 			$window.location.hash += value;
 		}
 
-		function unique(array) {
+		function isUnique(array) {
 			var seen = {};
 			return array.filter(function(item) {
 				return seen.hasOwnProperty(item) ? false : (seen[item] = true);
@@ -156,13 +144,14 @@ webpackJsonp([0],[
 
 		function uniqueSplit(string, separator){
 			if(string === "") return [];
-			return unique(string.substr(1, string.length).split(separator));
+			return isUnique(string.substr(1, string.length).split(separator));
 		}
 	};
 
 	LocationService.$inject = ["$window"];
 
 	module.exports = LocationService;
+
 
 /***/ },
 /* 8 */
@@ -200,10 +189,6 @@ webpackJsonp([0],[
 			return result;
 		};
 
-		this.splitAddressSearch = function(separator){
-			return LocationService.getSearchSplit(separator);
-		};
-
 		this.splitAddressHash = function(separator){
 			return LocationService.getHashSplit(separator);
 		};
@@ -212,6 +197,7 @@ webpackJsonp([0],[
 	TwitchListService.$inject = ["requestFactory", "locationService"];
 
 	module.exports = TwitchListService;
+
 
 /***/ }
 ]);
