@@ -1,21 +1,38 @@
 {
   "name": "jsTwitchList",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Dynamic Twitch Stream List",
   "main": "",
   "dependencies": {
     "angular": "^1.5.8"
   },
   "devDependencies": {
+    "bonzo": "^2.0.0",
+    "css-loader": "^0.25.0",
+    "devicons": "^1.8.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "font-awesome": "^4.6.3",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
     "gulp-csso": "^2.0.0",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-processhtml": "^1.1.0",
+    "gulp-pug": "^3.0.4",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.9",
-    "pump": "^1.0.1",
-    "webpack": "^1.13.1"
+    "gulp-webserver": "^0.9.1",
+    "normalize-css": "^2.3.1",
+    "qwery": "^4.0.0",
+    "require-dir": "^0.3.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.2",
+    "webpack-stream": "^3.2.0"
   },
   "author": "squaremarco",
   "license": "MIT"
