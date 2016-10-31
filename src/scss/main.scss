@@ -50,11 +50,12 @@ a:focus {
 	background: lighten($twitch-dark-gray, 3%);
 }
 
-.list-add-container {
+list-add {
+	display: block;
+	width: 100%;
 	border-bottom: 1px darken($twitch-dark-gray, 5%) solid;
 	input {
 		box-sizing: border-box;
-		display: block;
 		line-height: 50px;
 		width: 100%;
 		margin: 0;
@@ -69,9 +70,11 @@ a:focus {
 	}
 }
 
-.list-scroll-container {
+list-scroll {
+	display: block;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	width: 300px;
 	height: 100vh;
 }
 
@@ -80,12 +83,13 @@ a:focus {
 	position: relative;
 }
 
-.list-user {
-	margin-top: 1px;
+list-user {
+	display: block;
 	background: $twitch-dark-gray;
 	color: $text-color;
 	text-decoration: none;
 	position: relative;
+	margin-top: 1px;
 	&:first-child {
 		margin-top: 0;
 	}

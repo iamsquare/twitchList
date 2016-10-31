@@ -1,0 +1,6 @@
+<div class="user-container">
+	<img class="user-avatar" ng-src="{{vm.data.avatar}}"/>
+	<div class="user-name" ng-bind="vm.data.name"></div>
+	<div class="user-status {{vm.data.status}}"></div>
+</div>
+<div class="user-remove" ng-click="vm.onDelete({name: vm.data.name})"><i class="fa fa-remove"></i></div>
