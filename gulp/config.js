@@ -42,14 +42,14 @@ module.exports = {
 		webpack: {
 			src: {
 				app: ["./src/app/app.js"],
-				vendor: ["bonzo", "qwery", "font-awesome/css/font-awesome.css", "normalize-css/normalize.css", "devicons/css/devicons.css"]
+				vendor: ["angular", "font-awesome/css/font-awesome.css", "normalize-css/normalize.css", "devicons/css/devicons.css", "./assets/logo-font/css/logo-font.css"]
 			},
 			dest: "./dist/js"
 		},
 		webpackDev: {
 			src: {
 				app: ["./src/app/app.js"],
-				vendor: ["bonzo", "qwery"]
+				vendor: ["angular"]
 			},
 			dest: "./dist/js"
 		},

@@ -1,0 +1,23 @@
+scss_files: "**/*.scss"
+
+exclude: "node_modules/**"
+
+linters:
+    BorderZero:
+        enabled: false
+    Indentation:
+        enabled: false
+    PropertySortOrder:
+        enabled: false
+    HexNotation:
+        enabled: false
+    EmptyLineBetweenBlocks:
+        enabled: false
+    StringQuotes:
+        enabled: false
+    SpaceBeforeBrace:
+        enabled: false
+    IdSelector:
+        enabled: false
+    SingleLinePerSelector:
+        enabled: false

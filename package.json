@@ -7,7 +7,6 @@
     "angular": "^1.5.8"
   },
   "devDependencies": {
-    "bonzo": "^2.0.0",
     "css-loader": "^0.25.0",
     "devicons": "^1.8.0",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -27,8 +26,8 @@
     "gulp-watch": "^4.3.9",
     "gulp-webserver": "^0.9.1",
     "normalize-css": "^2.3.1",
-    "qwery": "^4.0.0",
     "require-dir": "^0.3.0",
+    "reset-css": "^2.2.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",

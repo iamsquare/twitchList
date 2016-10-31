@@ -1,7 +1,0 @@
-{
-	"esversion": 5,
-	"globals": {
-		"require": false,
-		"module": false
-	}
-}

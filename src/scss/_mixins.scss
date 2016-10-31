@@ -1,34 +1,30 @@
-@mixin box($h, $w) {
-	width: $w;
-	height: $h;
-}
-
-@mixin user-select($a) {
-	-webkit-user-select: $a;
-	-moz-user-select: $a;
-	-ms-user-select: $a;
-	user-select: $a;
-}
-
 @mixin online-effect() {
-	&:after,
-	&:before {
+	&::after, &::before {
 		position: absolute;
 		z-index: 1;
 		top: 50%;
-		left: 50%;
+		left: -100%;
 		display: block;
 		width: 0;
 		height: 0;
 		content: "";
-		border-radius: 999px;
+		border-radius: 100%;
 	}
-	&:after {
-		-webkit-animation: expand 1500ms infinite 750ms ease-in;
-		animation: expand 1500ms infinite 750ms ease-in;
+	&::after {
+		animation: expand 2000ms infinite 900ms ease-in;
 	}
-	&:before {
-		-webkit-animation: expand 1500ms infinite ease-in;
-		animation: expand 1500ms infinite ease-in;
+	&::before {
+		animation: expand 2000ms infinite ease-in;
+	}
+}
+
+@mixin clearfix() {
+	&::after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
 	}
 }

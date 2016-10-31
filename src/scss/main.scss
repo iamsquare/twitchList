@@ -1,234 +1,170 @@
-@import "variables", "mixins", "colors";
+@import "colors", "variables", "mixins";
 
 * {
-	box-sizing: border-box;
-}
-
-a {
-	text-decoration: none;
-	color: $text-color;
-}
-
-html {
-	width: 100%;
-	height: 100%;
-	background: $background-color;
-	background: -moz-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
-	background: -webkit-radial-gradient(center, ellipse cover, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
-	background: radial-gradient(ellipse at center, $background-color 0%, $background-color-secondary 95%) no-repeat center center fixed;
-	background-size: cover;
+	box-sizing: content-box;
 }
 
 body {
-	font: 400 1.1em "Open Sans", sans-serif;
-	color: $text-color;
-
-	@include user-select(none);
+	display: flex;
+	justify-content: space-between;
+	font-family: "Open Sans", sans-serif;
+	font-size: 16px;
+	background: $stream-background-color;
 }
 
-input {
-	font: 600 1.1em "Open Sans", sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	color: $text-color;
-	border: none;
-	border-bottom: 2px solid $text-color;
-	outline: none;
-	background: none;
+//normalize.css override
+a:focus {
+	outline: 0;
 }
 
-form {
-	font: 300 1.1em "Open Sans", sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: center;
-}
-
-#app-container {
-	width: 50%;
-	margin: 0 auto;
-	padding: $spacing-size 0;
-}
-
-#tutorial-container {
-	position: absolute;
-	top: 35%;
-	width: 50%;
-	text-align: center;
-	h1 {
-		font-size: 2em;
-		font-weight: 600;
-		line-height: 2em;
-		margin-bottom: $spacing-size;
-		text-transform: uppercase;
-	}
-	.fa,
-	.logo {
-		font-size: 1.4em;
-		transition: all ease-in .1s;
-		opacity: .5;
-		&:hover {
-			opacity: 1;
-		}
-	}
-	span {
-		font-weight: 600;
-		font-style: italic;
-		padding: 2px 5px;
-		background: $container-color;
-	}
-	p {
-		font-weight: 300;
-		margin-bottom: $spacing-size;
-	}
-	a {
-		font-weight: 600;
-		margin: 0 10px;
-	}
-}
-
-.channel-form {
-	margin-bottom: $spacing-size;
+.side-container {
+	overflow: hidden;
+	width: 280px;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	background: darken($twitch-dark-gray, 5%);
 }
 
 .stream-container {
-	display: flex;
-	flex-direction: row;
 	width: 100%;
-	margin: 0 0 2px 0;
-	padding: $spacing-size;
-	background: $container-color;
-
-	align-items: center;
-	justify-content: space-between;
-	&:hover {
-		background: $container-color-lighter;
-	}
-	.stream-name,
-	.stream-title {
-		margin: 0 0 0 $spacing-size;
-		text-align: center;
-	}
-	.stream-name {
-		font-weight: 300;
-		font-style: italic;
-		width: 50%;
-		color: $text-color-darker;
-	}
-	.stream-title {
-		font-weight: 600;
-		width: 50%;
-	}
-	.stream-logo-container {
-		border: $container-border-color solid 2px;
-		.stream-logo {
-			background: #FFF;
-
-			@include box($logo-size, $logo-size);
-		}
-		.stream-status-container {
-			font-size: 11px;
-			line-height: 11px;
-			position: relative;
-			display: none;
-			overflow: hidden;
-			width: $logo-size;
-			padding: 7px 0;
-			text-align: center;
-			text-transform: uppercase;
-			&.online,
-			&.offline {
-				display: block;
-			}
-			&.online {
-				font-weight: 600;
-				background: $status-color-online;
-
-				@include online-effect();
-			}
-			&.offline {
-				background: $status-color-offline;
-			}
-		}
-	}
+	height: 100vh;
+	flex-shrink: 1000;
 }
 
-#side-panel-button {
-	font-size: 1.3em;
-	line-height: 50px;
-	position: fixed;
-	top: 0;
-	left: 0;
-	transition: all ease-in .2s;
-	text-align: center;
-	background: $container-color;
-
-	@include box(50px, 50px);
-	&:hover {
-		cursor: pointer;
-		background: $container-color-lighter;
-	}
-	&.active {
-		left: 250px;
-	}
-	&.hide {
-		display: none;
-	}
+.stream-frame {
+	width: 100%;
+	height: 100vh;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	display: block;
 }
 
-#side-panel {
-	position: fixed;
-	z-index: 10;
-	top: 0;
-	left: -250px;
-	width: 250px;
-	height: 100%;
-	transition: all ease-in .2s;
-	background: $container-color;
-	.side-panel-footer,
-	.side-panel-button,
-	.side-panel-separator {
+.list-add-container, .list-toolbar-container {
+	width: 280px;
+	height: 60px;
+	background: lighten($twitch-dark-gray, 3%);
+}
+
+.list-add-container {
+	border-bottom: 1px darken($twitch-dark-gray, 5%) solid;
+	input {
+		box-sizing: border-box;
+		display: block;
 		line-height: 50px;
 		width: 100%;
-		height: 50px;
-		text-align: center;
-	}
-	.side-panel-separator,
-	.side-panel-button {
-		font-weight: 300;
-	}
-	.side-panel-separator {
-		font-style: italic;
-		margin-bottom: 2px;
-		background: $container-color-lighter;
-	}
-	.side-panel-button {
-		cursor: pointer;
-		transition: all ease-in .1s;
-		&:hover {
-			background: $container-color-lighter;
+		margin: 0;
+		padding: 0 10px;
+		font-family: "Open Sans", sans-serif;
+		color: $text-color;
+		background: none;
+		border: 0;
+		&:focus {
+			outline: 0;
 		}
 	}
-	.side-panel-footer {
-		font-size: 1.3em;
-		position: absolute;
-		bottom: 5px;
-		display: flex;
+}
 
-		justify-content: space-around;
-		a {
-			transition: all ease-in .1s;
-			opacity: .5;
-			&:hover {
-				opacity: .8;
-			}
-		}
+.list-scroll-container {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: 100vh;
+}
+
+.list-container {
+	width: 280px;
+	position: relative;
+}
+
+.list-user {
+	margin-top: 1px;
+	background: $twitch-dark-gray;
+	color: $text-color;
+	text-decoration: none;
+	position: relative;
+	&:first-child {
+		margin-top: 0;
+	}
+}
+
+.user-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	&:hover {
+		cursor: pointer;
+		background: $twitch-dark-gray-hover;
+	}
+}
+
+.user-avatar {
+	width: 35px;
+	height: 35px;
+}
+
+.user-name {
+	font-style: italic;
+	font-size: .8em;
+}
+
+.user-status {
+	position: relative;
+	overflow: hidden;
+	width: 5px;
+	height: 35px;
+	background: $unknown-background-color;
+	&.online {
+		@include online-effect();
+		background: $online-background-color;
+	}
+	&.offline {
+		background: $offline-background-color;
+	}
+}
+
+.user-remove {
+	font-size: 1.3em;
+	line-height: 35px;
+	position: absolute;
+	top: 0;
+	left: -35px;
+	width: 35px;
+	height: 35px;
+	opacity: 0;
+	transition: opacity .1s ease-in, left .1s ease-in;
+	text-align: center;
+	background: $remove-color;
+	&:hover {
+		cursor: pointer;
+		background: lighten($remove-color, 10%);
 	}
 	&.active {
 		left: 0;
+		opacity: 1;
 	}
-	&.hide {
-		display: none;
+}
+
+.list-toolbar-container {
+	@include clearfix();
+	border-top: 1px darken($twitch-dark-gray, 5%) solid;
+	line-height: 40px;
+	font-size: .9em;
+	height: 40px;
+	color: $text-color;
+}
+
+.toolbar-button {
+	text-align: center;
+	width: 33.333333%;
+	float: left;
+	&:hover, &.active {
+		background: $twitch-dark-gray-hover;
+	}
+	&:hover {
+		cursor: pointer;
 	}
 }
