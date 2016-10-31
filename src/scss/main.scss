@@ -44,7 +44,7 @@ a:focus {
 	display: block;
 }
 
-.list-add-container, .list-toolbar-container {
+list-add, .list-toolbar-container {
 	width: 280px;
 	height: 60px;
 	background: lighten($twitch-dark-gray, 3%);
