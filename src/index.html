@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="twitchList">
 <head>
 	<meta charset="utf-8">
 	<title>Twitch List</title>
@@ -8,47 +8,33 @@
 	<link rel="stylesheet" href="../node_modules/normalize-css/normalize.css">
 	<link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body ng-controller="mainController as vm">
 	<div class="side-container">
 		<div class="list-add-container">
-			<input type="text" placeholder="Add channel to list..."/>
+			<form ng-submit="vm.addChannel(vm.field)"><input ng-model="vm.field" type="text" placeholder="Add channel to list..."/></form>
 		</div>
 		<div class="list-scroll-container">
 			<div class="list-container">
-				<div class="list-user">
+				<div class="list-user" ng-repeat="user in vm.users" ng-click="vm.changeStream(user.url)" ng-cloak ng-show="user.status === 'online' ? vm.showOnline : vm.showOffline">
 					<div class="user-container">
-						<img class="user-avatar" src="images/150x150-placeholder.png"/>
-						<div class="user-name">test_channel</div>
-						<div class="user-status online"></div>
+						<img class="user-avatar" ng-src="{{user.avatar}}"/>
+						<div class="user-name" ng-bind="user.name"></div>
+						<div class="user-status {{user.status}}"></div>
 					</div>
-					<div class="user-remove"><i class="fa fa-remove"></i></div>
-				</div>
-				<div class="list-user">
-					<div class="user-container">
-						<img class="user-avatar" src="images/150x150-placeholder.png"/>
-						<div class="user-name">test_channel</div>
-						<div class="user-status offline"></div>
-					</div>
-					<div class="user-remove"><i class="fa fa-remove"></i></div>
-				</div>
-				<div class="list-user">
-					<div class="user-container">
-						<img class="user-avatar" src="images/150x150-placeholder.png"/>
-						<div class="user-name">test_channel</div>
-						<div class="user-status"></div>
-					</div>
-					<div class="user-remove"><i class="fa fa-remove"></i></div>
+					<div class="user-remove {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.removeChannel(user)"><i class="fa fa-remove"></i></div>
 				</div>
 			</div>
 		</div>
 		<div class="list-toolbar-container">
-			<div class="toolbar-button">Online</div>
-			<div class="toolbar-button">Offline</div>
-			<div class="toolbar-button">Remove</div>
+			<div class="toolbar-button {{vm.showOnline ? 'active' : ''}}" ng-click="vm.toggleOnline()">Online</div>
+			<div class="toolbar-button {{vm.showOffline ? 'active' : ''}}" ng-click="vm.toggleOffline()">Offline</div>
+			<div class="toolbar-button {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.toggleRemove()">Remove</div>
 		</div>
 	</div>
 	<div class="stream-container">
-		<iframe class="stream-frame" src="http://player.twitch.tv/?channel=KingRichard15"></iframe>
+		<iframe class="stream-frame" ng-src="{{vm.currentStream}}"></iframe>
 	</div>
+	<script src="js/vendor.bundle.js" charset="utf-8"></script>
+	<script src="js/app.bundle.js" charset="utf-8"></script>
 </body>
 </html>

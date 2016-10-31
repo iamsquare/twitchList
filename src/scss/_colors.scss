@@ -1,7 +1,8 @@
 $text-color: #f1f1f1;
 $twitch-purple: #6441a5;
 $twitch-dark-gray: #262626;
-$twitch-dark-gray-hover: lighten($twitch-dark-gray, 10%);
+$twitch-dark-gray-active: lighten($twitch-dark-gray, 8%);
+$twitch-dark-gray-hover: lighten($twitch-dark-gray, 15%);
 $remove-color: #d61568;
 $online-background-color: $twitch-purple;
 $offline-background-color: lighten($twitch-dark-gray, 15%);

@@ -12,6 +12,11 @@ body {
 	background: $stream-background-color;
 }
 
+//ngCloak behaviour
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
 //normalize.css override
 a:focus {
 	outline: 0;
@@ -104,6 +109,7 @@ a:focus {
 .user-avatar {
 	width: 35px;
 	height: 35px;
+	background: url("../images/150x150-placeholder.png");
 }
 
 .user-name {
@@ -161,10 +167,11 @@ a:focus {
 	text-align: center;
 	width: 33.333333%;
 	float: left;
-	&:hover, &.active {
-		background: $twitch-dark-gray-hover;
+	&.active {
+		background: $twitch-dark-gray-active;
 	}
 	&:hover {
+		background: $twitch-dark-gray-hover;
 		cursor: pointer;
 	}
 }
