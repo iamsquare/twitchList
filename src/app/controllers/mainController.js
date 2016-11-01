@@ -1,5 +1,6 @@
 var MainController = function($sce, TwitchListService){
 	var vm = this;
+	var seconds = 1000;
 
 	vm.addChannel = addChannel;
 	vm.changeStream = changeStream;

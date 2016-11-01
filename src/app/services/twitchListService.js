@@ -1,14 +1,14 @@
 var TwitchListService = function(RequestFactory){
 	var apiBaseUrl = "https://api.twitch.tv/kraken/";
 	var playerBaseUrl = "https://player.twitch.tv/?channel=";
+	var requestHeader = {
+		headers: {
+			"Client-ID": "24geemvcr6deyxmx8ocqnmr7v3l8hg9"
+		}
+	};
 
 	this.requestStream = function(str){
 		var result = {};
-		var requestHeader = {
-			headers: {
-				"Client-ID": "24geemvcr6deyxmx8ocqnmr7v3l8hg9"
-			}
-		};
 
 		result.name = str;
 		result.avatar = "images/150x150-placeholder.png";

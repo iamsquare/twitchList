@@ -9,30 +9,32 @@
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="mainController as vm">
-	<div class="side-container">
-		<div class="list-add-container">
-			<form ng-submit="vm.addChannel(vm.field)"><input ng-model="vm.field" type="text" placeholder="Add channel to list..."/></form>
-		</div>
-		<div class="list-scroll-container">
-			<div class="list-container">
-				<div class="list-user" ng-repeat="user in vm.users" ng-click="vm.changeStream(user.url)" ng-cloak ng-show="user.status === 'online' ? vm.showOnline : vm.showOffline">
-					<div class="user-container">
-						<img class="user-avatar" ng-src="{{user.avatar}}"/>
-						<div class="user-name" ng-bind="user.name"></div>
-						<div class="user-status {{user.status}}"></div>
+	<div class="app-container">
+		<div class="side-container">
+			<div class="list-add-container">
+				<form ng-submit="vm.addChannel(vm.field)"><input ng-model="vm.field" type="text" placeholder="Add channel to list..."/></form>
+			</div>
+			<div class="list-scroll-container">
+				<div class="list-container">
+					<div class="list-user" ng-repeat="user in vm.users | filterStatus:vm.showOnline:vm.showOffline" ng-click="vm.changeStream(user.url)" ng-cloak>
+						<div class="user-container">
+							<img class="user-avatar" ng-src="{{user.avatar}}"/>
+							<div class="user-name" ng-bind="user.name"></div>
+							<div class="user-status {{user.status}}"></div>
+						</div>
+						<div class="user-remove {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.removeChannel(user)"><i class="fa fa-remove"></i></div>
 					</div>
-					<div class="user-remove {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.removeChannel(user)"><i class="fa fa-remove"></i></div>
 				</div>
 			</div>
+			<div class="list-toolbar-container">
+				<div class="toolbar-button {{vm.showOnline ? 'active' : ''}}" ng-click="vm.toggleOnline()">Online</div>
+				<div class="toolbar-button {{vm.showOffline ? 'active' : ''}}" ng-click="vm.toggleOffline()">Offline</div>
+				<div class="toolbar-button {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.toggleRemove()">Remove</div>
+			</div>
 		</div>
-		<div class="list-toolbar-container">
-			<div class="toolbar-button {{vm.showOnline ? 'active' : ''}}" ng-click="vm.toggleOnline()">Online</div>
-			<div class="toolbar-button {{vm.showOffline ? 'active' : ''}}" ng-click="vm.toggleOffline()">Offline</div>
-			<div class="toolbar-button {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.toggleRemove()">Remove</div>
+		<div class="stream-container">
+			<iframe class="stream-frame" ng-src="{{vm.currentStream}}"></iframe>
 		</div>
-	</div>
-	<div class="stream-container">
-		<iframe class="stream-frame" ng-src="{{vm.currentStream}}"></iframe>
 	</div>
 	<script src="js/vendor.bundle.js" charset="utf-8"></script>
 	<script src="js/app.bundle.js" charset="utf-8"></script>
