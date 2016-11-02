@@ -1,6 +1,5 @@
 var MainController = function($sce, TwitchListService){
 	var vm = this;
-	var seconds = 1000;
 
 	vm.addChannel = addChannel;
 	vm.changeStream = changeStream;
@@ -8,15 +7,16 @@ var MainController = function($sce, TwitchListService){
 	vm.toggleOnline = toggleOnline;
 	vm.toggleOffline = toggleOffline;
 	vm.toggleRemove = toggleRemove;
+	vm.toggleBoolean = toggleBoolean;
 
 	vm.userNames = [];
-	vm.testNames = ["zai", "sheevergaming", "freecodecamp", "wagamamatv", "alohadanceTV", "sing_sing", "test_channel", "404nochannel", "oroboro"];
+	vm.testNames = ["zai", "sheevergaming", "freecodecamp", "wagamamatv", "alohadanceTV", "sing_sing", "test_channel", "oroboro"];
 	vm.users = [];
 	vm.field = "";
 	vm.currentStream = $sce.trustAsResourceUrl("http://player.twitch.tv/");
 	vm.showOnline = true;
 	vm.showOffline = true;
-	vm.removeEnabled = false;
+	vm.showRemove = false;
 
 	angular.forEach(vm.testNames, function(str){
 		vm.addChannel(str);
@@ -44,6 +44,10 @@ var MainController = function($sce, TwitchListService){
 
 	function toggleRemove(){
 		vm.removeEnabled = !vm.removeEnabled;
+	}
+
+	function toggleBoolean(va){
+		vm[va] = !vm[va];
 	}
 
 	function changeStream(url){

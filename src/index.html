@@ -12,7 +12,9 @@
 	<div class="app-container">
 		<div class="side-container">
 			<div class="list-add-container">
-				<form ng-submit="vm.addChannel(vm.field)"><input ng-model="vm.field" type="text" placeholder="Add channel to list..."/></form>
+				<form ng-submit="vm.addChannel(vm.field)">
+					<input type="text" ng-model="vm.field" placeholder="Add channel to the list..."/>
+				</form>
 			</div>
 			<div class="list-scroll-container">
 				<div class="list-container">
@@ -22,14 +24,14 @@
 							<div class="user-name" ng-bind="user.name"></div>
 							<div class="user-status {{user.status}}"></div>
 						</div>
-						<div class="user-remove {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.removeChannel(user)"><i class="fa fa-remove"></i></div>
+						<div class="user-remove" ng-class="{'active' : vm.removeEnabled}" ng-click="vm.removeChannel(user)"><i class="fa fa-remove"></i></div>
 					</div>
 				</div>
 			</div>
 			<div class="list-toolbar-container">
-				<div class="toolbar-button {{vm.showOnline ? 'active' : ''}}" ng-click="vm.toggleOnline()">Online</div>
-				<div class="toolbar-button {{vm.showOffline ? 'active' : ''}}" ng-click="vm.toggleOffline()">Offline</div>
-				<div class="toolbar-button {{vm.removeEnabled ? 'active' : ''}}" ng-click="vm.toggleRemove()">Remove</div>
+				<div class="toolbar-button" ng-class="{'active' : vm.showOnline}" ng-click="vm.toggleOnline()">Online</div>
+				<div class="toolbar-button" ng-class="{'active' : vm.showOffline}" ng-click="vm.toggleOffline()">Offline</div>
+				<div class="toolbar-button" ng-class="{'active' : vm.showRemove}" ng-click="vm.toggleRemove()">Remove</div>
 			</div>
 		</div>
 		<div class="stream-container">
