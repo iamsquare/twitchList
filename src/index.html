@@ -4,8 +4,10 @@
 	<meta charset="utf-8">
 	<title>Twitch List</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
+	<!-- build:css css/vendor.css -->
 	<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../node_modules/normalize-css/normalize.css">
+	<!-- /build -->
 	<link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-controller="mainController as vm">
@@ -18,8 +20,8 @@
 			</div>
 			<div class="list-scroll-container">
 				<div class="list-container">
-					<div class="list-user" ng-repeat="user in vm.users | filterStatus:vm.showOnline:vm.showOffline" ng-click="vm.changeStream(user.url)" ng-cloak>
-						<div class="user-container">
+					<div class="list-user" ng-repeat="user in vm.users | filterStatus:vm.showOnline:vm.showOffline" ng-click="vm.selectStream($index, user.url)" ng-cloak>
+						<div class="user-container" ng-class="{'active' : $index == vm.selectedIndex}">
 							<img class="user-avatar" ng-src="{{user.avatar}}"/>
 							<div class="user-name" ng-bind="user.name"></div>
 							<div class="user-status {{user.status}}"></div>
@@ -35,7 +37,7 @@
 			</div>
 		</div>
 		<div class="stream-container">
-			<iframe class="stream-frame" ng-src="{{vm.currentStream}}"></iframe>
+			<iframe class="stream-frame" ng-src="{{vm.selectedStream}}"></iframe>
 		</div>
 	</div>
 	<script src="js/vendor.bundle.js" charset="utf-8"></script>

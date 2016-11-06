@@ -42,7 +42,7 @@ module.exports = {
 		webpack: {
 			src: {
 				app: ["./src/app/app.js"],
-				vendor: ["angular", "font-awesome/css/font-awesome.css", "normalize-css/normalize.css", "devicons/css/devicons.css", "./assets/logo-font/css/logo-font.css"]
+				vendor: ["angular", "font-awesome/css/font-awesome.css", "normalize-css/normalize.css", "./assets/logo-font/css/logo-font.css"]
 			},
 			dest: "./dist/js"
 		},

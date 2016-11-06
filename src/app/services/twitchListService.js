@@ -1,4 +1,4 @@
-var TwitchListService = function(RequestFactory, HashParserService){
+var TwitchListService = function(RequestFactory, HashParserFactory){
 	var apiBaseUrl = "https://api.twitch.tv/kraken/";
 	var playerBaseUrl = "https://player.twitch.tv/?channel=";
 	var requestHeader = {
@@ -29,14 +29,14 @@ var TwitchListService = function(RequestFactory, HashParserService){
 			return result;
 		},
 		getHash: function(){
-			return HashParserService.parse();
+			return HashParserFactory.parse(",");
 		},
 		updateHash: function(obj){
-			HashParserService.set(obj);
+			HashParserFactory.set(obj);
 		}
 	};
 };
 
-TwitchListService.$inject = ["requestFactory", "hashParserService"];
+TwitchListService.$inject = ["requestFactory", "hashParserFactory"];
 
 module.exports = TwitchListService;

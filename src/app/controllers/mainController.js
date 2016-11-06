@@ -1,33 +1,39 @@
 var MainController = function($sce, TwitchListService){
 	var vm = this;
 
+	//public variables
 	vm.hash = TwitchListService.getHash() || { "users" : [] };
+	vm.userNames = [];
+	vm.users = [];
+	vm.field = "";
+	vm.selectedStream = $sce.trustAsResourceUrl("http://player.twitch.tv/");
+	vm.selectedIndex = -1;
+	vm.showOnline = true;
+	vm.showOffline = true;
+	vm.showRemove = false;
+	
+	//methods
 	vm.addChannel = addChannel;
-	vm.changeStream = changeStream;
 	vm.removeChannel = removeChannel;
+	vm.selectStream = selectStream;
 	vm.toggleOnline = toggleOnline;
 	vm.toggleOffline = toggleOffline;
 	vm.toggleRemove = toggleRemove;
 	vm.toggleBoolean = toggleBoolean;
 
-	vm.userNames = [];
-	vm.users = [];
-	vm.field = "";
-	vm.currentStream = $sce.trustAsResourceUrl("http://player.twitch.tv/");
-	vm.showOnline = true;
-	vm.showOffline = true;
-	vm.showRemove = false;
-
-	angular.forEach(vm.hash["users"], function(str){
-		vm.users.push(TwitchListService.requestStream(str));
-	});
-
+	//init users parsed from hash
+	if(vm.hash["users"].length !== 0){
+		angular.forEach(vm.hash["users"], function(str){
+			vm.userNames.push(str);
+			vm.users.push(TwitchListService.requestStream(str));
+		});
+	}
 
 	function addChannel(str){
 		if(vm.userNames.indexOf(str) >= 0 || vm.field === "") return;
-		vm.userNames.push(str);
 		vm.hash["users"].push(str);
 		TwitchListService.updateHash(vm.hash);
+		vm.userNames.push(str);
 		vm.users.push(TwitchListService.requestStream(str));
 		vm.field = "";
 	}
@@ -58,8 +64,9 @@ var MainController = function($sce, TwitchListService){
 		vm[va] = !vm[va];
 	}
 
-	function changeStream(url){
-		vm.currentStream = $sce.trustAsResourceUrl(url);
+	function selectStream(index, url){
+		vm.selectedStream = $sce.trustAsResourceUrl(url);
+		vm.selectedIndex = index;
 	}
 };
 

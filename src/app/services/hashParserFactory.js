@@ -1,21 +1,22 @@
-var hashParserService = function($location){
+//this hash parsing factory it's extremely unstable
+//it will eventually break if used outside the scope of this application
+var hashParserFactory = function($location){
 	return {
 		get: function(){
 			return $location.hash();
 		},
-		parse: function(){
-			var res;
+		parse: function(separator){
 			if($location.hash()){
-				res = {};
+				var res = {};
 				angular.forEach($location.hash().split("&"), function(item){
 					var split = item.split("=");
 					if(split[0] !== ""){
-						if(split[1] !== undefined) res[split[0]] = split[1].split(",");
-						else res[split[0]] = split[0];
+						if(split[1] !== "") res[split[0]] = split[1].split(separator);
+						else res[split[0]] = [];
 					}
 				});
+				return res;
 			}
-			return res;
 		},
 		set: function(obj){
 			var res = "";
@@ -30,6 +31,6 @@ var hashParserService = function($location){
 	}
 };
 
-hashParserService.$inject = ["$location"];
+hashParserFactory.$inject = ["$location"];
 
-module.exports = hashParserService;
+module.exports = hashParserFactory;
