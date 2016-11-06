@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="twitchList">
+<head>
+	<meta charset="utf-8">
+	<title>Twitch List</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600">
+	<link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../node_modules/normalize-css/normalize.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<body ng-controller="mainController as vm">
+	<div class="app-container">
+		<div class="side-container">
+			<div class="list-add-container">
+				<form ng-submit="vm.addChannel(vm.field)">
+					<input type="text" ng-model="vm.field" placeholder="Add channel to the list..."/>
+				</form>
+			</div>
+			<div class="list-scroll-container">
+				<div class="list-container">
+					<div class="list-user" ng-repeat="user in vm.users | filterStatus:vm.showOnline:vm.showOffline" ng-click="vm.changeStream(user.url)" ng-cloak>
+						<div class="user-container">
+							<img class="user-avatar" ng-src="{{user.avatar}}"/>
+							<div class="user-name" ng-bind="user.name"></div>
+							<div class="user-status {{user.status}}"></div>
+						</div>
+						<div class="user-remove" ng-class="{'active' : vm.removeEnabled}" ng-click="vm.removeChannel(user)"><i class="fa fa-remove"></i></div>
+					</div>
+				</div>
+			</div>
+			<div class="list-toolbar-container">
+				<div class="toolbar-button" ng-class="{'active' : vm.showOnline}" ng-click="vm.toggleOnline()">Online</div>
+				<div class="toolbar-button" ng-class="{'active' : vm.showOffline}" ng-click="vm.toggleOffline()">Offline</div>
+				<div class="toolbar-button" ng-class="{'active' : vm.showRemove}" ng-click="vm.toggleRemove()">Remove</div>
+			</div>
+		</div>
+		<div class="stream-container">
+			<iframe class="stream-frame" ng-src="{{vm.currentStream}}"></iframe>
+		</div>
+	</div>
+	<script src="js/vendor.bundle.js" charset="utf-8"></script>
+	<script src="js/app.bundle.js" charset="utf-8"></script>
+</body>
+</html>

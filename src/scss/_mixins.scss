@@ -1,0 +1,30 @@
+@mixin online-effect() {
+	&::after, &::before {
+		position: absolute;
+		z-index: 1;
+		top: 50%;
+		left: -100%;
+		display: block;
+		width: 0;
+		height: 0;
+		content: "";
+		border-radius: 100%;
+	}
+	&::after {
+		animation: expand 2000ms infinite 900ms ease-in;
+	}
+	&::before {
+		animation: expand 2000ms infinite ease-in;
+	}
+}
+
+@mixin clearfix() {
+	&::after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+}

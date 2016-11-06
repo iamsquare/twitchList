@@ -1,0 +1,12 @@
+$text-color: #f1f1f1;
+$twitch-purple: #6441a5;
+$twitch-light-purple: #b9a3e3;
+$twitch-dark-gray: #262626;
+$twitch-dark-gray-active: lighten($twitch-dark-gray, 8%);
+$twitch-dark-gray-hover: lighten($twitch-dark-gray, 15%);
+$remove-color: #d61568;
+$online-background-color: $twitch-purple;
+$offline-background-color: lighten($twitch-dark-gray, 15%);
+$unknown-background-color: desaturate($remove-color, 35%);
+$online-effect-color: #b19dd8;
+$stream-background-color: darken($twitch-purple, 40%);
