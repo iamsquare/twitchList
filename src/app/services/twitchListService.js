@@ -1,4 +1,4 @@
-var TwitchListService = function(RequestFactory){
+var TwitchListService = function(RequestFactory, HashParserService){
 	var apiBaseUrl = "https://api.twitch.tv/kraken/";
 	var playerBaseUrl = "https://player.twitch.tv/?channel=";
 	var requestHeader = {
@@ -7,28 +7,36 @@ var TwitchListService = function(RequestFactory){
 		}
 	};
 
-	this.requestStream = function(str){
-		var result = {};
+	return {
+		requestStream: function(str){
+			var result = {};
 
-		result.name = str;
-		result.avatar = "images/150x150-placeholder.png";
+			result.name = str;
+			result.avatar = "images/150x150-placeholder.png";
 
-		RequestFactory.get(apiBaseUrl + "channels/" + str, requestHeader, function (response){
+			RequestFactory.get(apiBaseUrl + "channels/" + str, requestHeader, function (response){
 
-			result.name = response.data.display_name;
-			result.avatar = response.data.logo || result.avatar;
-			result.url = playerBaseUrl + result.name;
+				result.name = response.data.name;
+				result.avatar = response.data.logo || result.avatar;
+				result.url = playerBaseUrl + result.name;
 
-			RequestFactory.get(apiBaseUrl + "streams/" + str, requestHeader, function (response){
-				result.status = (response.data.stream !== null) ? "online" : "offline";
-			}, null);
+				RequestFactory.get(apiBaseUrl + "streams/" + str, requestHeader, function (response){
+					result.status = (response.data.stream !== null) ? "online" : "offline";
+				}, null);
 
-		});
+			});
 
-		return result;
+			return result;
+		},
+		getHash: function(){
+			return HashParserService.parse();
+		},
+		updateHash: function(obj){
+			HashParserService.set(obj);
+		}
 	};
 };
 
-TwitchListService.$inject = ["requestFactory"];
+TwitchListService.$inject = ["requestFactory", "hashParserService"];
 
 module.exports = TwitchListService;
