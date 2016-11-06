@@ -1,4 +1,4 @@
-var MainController = function($sce, TwitchListService){
+var MainController = function(TwitchListService){
 	var vm = this;
 
 	//public variables
@@ -6,7 +6,7 @@ var MainController = function($sce, TwitchListService){
 	vm.userNames = [];
 	vm.users = [];
 	vm.field = "";
-	vm.selectedStream = $sce.trustAsResourceUrl("http://player.twitch.tv/");
+	vm.selectedStream = "http://player.twitch.tv/";
 	vm.selectedIndex = -1;
 	vm.showOnline = true;
 	vm.showOffline = true;
@@ -65,11 +65,11 @@ var MainController = function($sce, TwitchListService){
 	}
 
 	function selectStream(index, url){
-		vm.selectedStream = $sce.trustAsResourceUrl(url);
+		vm.selectedStream = url;
 		vm.selectedIndex = index;
 	}
 };
 
-MainController.$inject = ["$sce", "twitchListService"];
+MainController.$inject = ["twitchListService"];
 
 module.exports = MainController;

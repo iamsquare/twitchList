@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="stream-container">
-			<iframe class="stream-frame" ng-src="{{vm.selectedStream}}"></iframe>
+			<iframe class="stream-frame" ng-src="{{vm.selectedStream | trustAsResourceUrl}}"></iframe>
 		</div>
 	</div>
 	<script src="js/vendor.bundle.js" charset="utf-8"></script>
